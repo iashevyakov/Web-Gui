@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <servlet>
+        <servlet-name>students</servlet-name>
+        <servlet-class>ru.itis.inform.Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>students</servlet-name>
+        <url-pattern>/students</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>autos</servlet-name>
+        <servlet-class>ru.itis.inform.ServletAuto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>autos</servlet-name>
+        <url-pattern>/auto</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>studentAdd</servlet-name>
+        <servlet-class>ru.itis.inform.AddUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentAdd</servlet-name>
+        <url-pattern>/studentAdd</url-pattern>
+    </servlet-mapping>
+
+
+
+</web-app>
