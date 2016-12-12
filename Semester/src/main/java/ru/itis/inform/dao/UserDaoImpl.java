@@ -1,8 +1,10 @@
 package ru.itis.inform.dao;
 
+import org.postgresql.core.JdbcCallParseInfo;
 import ru.itis.inform.models.User;
 
 import java.sql.*;
+import java.util.LinkedList;
 
 
 public class UserDaoImpl implements UserDao {
@@ -62,6 +64,23 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    public LinkedList<User> findAll() throws SQLException {
+
+        LinkedList<User> users = new LinkedList<User>();
+
+        String request = "SELECT * FROM usersview";
+
+        JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(request);
+
+        ResultSet resultSet = JDBConnection.statement.executeQuery();
+
+        while(resultSet.next()) {
+            users.add(new User(resultSet.getString("id"),resultSet.getString("uname"), resultSet.getString("login"), resultSet.getString("upassword"), resultSet.getBoolean("is_admin"),resultSet.getBoolean("is_workman")));
+        }
+
+        return users;
+    }
+
 
     public User find(String request, String element) {
         try {
@@ -83,6 +102,7 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
 
 
 

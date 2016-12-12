@@ -5,6 +5,7 @@ package ru.itis.inform.dao;
  */
 public interface CountryDao {
 
-    void addCountry(String country);
+    void addCountry(String country, String continent, String president, boolean is_federation);
+    void deleteCountry(String country);
 
 }

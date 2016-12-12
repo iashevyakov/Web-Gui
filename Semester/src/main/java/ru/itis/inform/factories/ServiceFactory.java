@@ -1,8 +1,6 @@
 package ru.itis.inform.factories;
 
-import ru.itis.inform.services.DetailService;
-import ru.itis.inform.services.TokenService;
-import ru.itis.inform.services.UserService;
+import ru.itis.inform.services.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +13,11 @@ public class ServiceFactory {
     private UserService userService;
     private TokenService tokenService;
     private DetailService detailService;
+    private NodeService nodeService;
+    private CountryService countryService;
+    private MarkService markService;
+    private UnitService unitService;
+    private FirmService firmService;
 
     private ServiceFactory() {
         try {
@@ -25,11 +28,21 @@ public class ServiceFactory {
             String userServiceClass = properties.getProperty("userService.class");
             String tokenServiceClass = properties.getProperty("tokenService.class");
             String detailServiceClass = properties.getProperty("detailService.class");
-
+            String nodeServiceClass = properties.getProperty("nodeService.class");
+            String countryServiceClass = properties.getProperty("countryService.class");
+            String markServiceClass = properties.getProperty("markService.class");
+            String unitServiceClass=properties.getProperty("unitService.class");
+            String firmServiceClass=properties.getProperty("firmService.class");
 
             this.userService = (UserService) Class.forName(userServiceClass).newInstance();
             this.tokenService = (TokenService) Class.forName(tokenServiceClass).newInstance();
             this.detailService = (DetailService) Class.forName(detailServiceClass).newInstance();
+            this.nodeService = (NodeService) Class.forName(nodeServiceClass).newInstance();
+            this.countryService = (CountryService) Class.forName(countryServiceClass).newInstance();
+            this.markService = (MarkService) Class.forName(markServiceClass).newInstance();
+            this.unitService = (UnitService) Class.forName(unitServiceClass).newInstance();
+            this.firmService = (FirmService) Class.forName(firmServiceClass).newInstance();
+
 
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
@@ -61,4 +74,14 @@ public class ServiceFactory {
     public DetailService getDetailService() {
         return detailService;
     }
+
+    public NodeService getNodeService(){return nodeService;}
+
+    public CountryService getCountryService(){return countryService;}
+
+    public MarkService getMarkService(){return markService;}
+
+    public UnitService getUnitService() {return unitService;}
+
+    public FirmService getFirmService() {return firmService;}
 }

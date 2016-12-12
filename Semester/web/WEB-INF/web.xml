@@ -45,11 +45,94 @@
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-
-
-
-
-
+    <servlet>
+        <servlet-name>DeleteCountry</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.DeleteCountry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCountry</servlet-name>
+        <url-pattern>/duCountry</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.Registration</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowUsers</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.ShowUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowUsers</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddDetail</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddDetail</servlet-name>
+        <url-pattern>/addDetail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteDetail</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.DeleteDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteDetail</servlet-name>
+        <url-pattern>/duDetail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteNode</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.DeleteNode</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteNode</servlet-name>
+        <url-pattern>/duNode</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddCountry</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddCountry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCountry</servlet-name>
+        <url-pattern>/addCountry</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddFirm</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddFirm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddFirm</servlet-name>
+        <url-pattern>/addFirm</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DUFirm</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.DeleteFirm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DUFirm</servlet-name>
+        <url-pattern>/duFirm</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddMark</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddMark</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddMark</servlet-name>
+        <url-pattern>/addMark</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DUMark</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.DeleteMark</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DUMark</servlet-name>
+        <url-pattern>/duMark</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

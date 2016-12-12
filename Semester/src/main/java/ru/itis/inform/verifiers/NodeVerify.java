@@ -44,5 +44,37 @@ public class NodeVerify {
         return null;
 
     }
+    public static Node checkNode(String node){
+
+        if (JDBConnection.getInstance().getConnection()!= null && !node.equals("")) {
+
+            String req = "SELECT * FROM nodes WHERE node_name = ? ";
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                JDBConnection.statement.setString(1,node);
+
+
+
+                ResultSet resultSet = JDBConnection.statement.executeQuery();
+
+                while (resultSet.next()) {
+
+                    return new Node(resultSet.getString("node_name"),resultSet.getString("unit_name"));
+                }
+            } catch (SQLException sql) {
+
+                sql.printStackTrace();
+
+            }
+            return null;
+
+
+        }
+
+        return null;
+
+    }
 
 }

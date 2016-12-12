@@ -117,7 +117,7 @@ select.custom-select{
 }
 
 #login form input[type="submit"]:hover {
-	background-color: #d44179;
+	background-color: springgreen;
 }
 
 #login > p {
@@ -190,6 +190,11 @@ a.btn-danger{
     top:50px;
     left: 50px;
 }
+table.table-bordered{
+	width: auto;
+	position: absolute;
+	left: 550px;
+}
 div.div1 {
 	position: absolute;
 	font-family: "Comic Sans MS";
@@ -233,7 +238,7 @@ div.div5{
 }
 select.styled-select {
 	background: transparent;
-	width: 198px;
+	width: 247px;
 	padding: 5px;
 	font-size: 16px;
 	border: 1px solid #ccc;
@@ -244,17 +249,23 @@ select.styled-select {
 .styled-select.slate {
 	background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
 	height: 34px;
-	width: 198px;
+	width: 247px;
 }
 .styled-select.slate select {
 	border: 1px solid #ccc;
 	font-size: 16px;
 	height: 34px;
-	width: 198px;
+	width: 247px;
 	margin-bottom: auto;
 }
 select.classic{
 	position: absolute;
 	top:400px;
 	left: 600px;;
+}
+a.btn-success{
+	width: 130px;
+}
+a.btn-warning{
+	width: 130px;
 }

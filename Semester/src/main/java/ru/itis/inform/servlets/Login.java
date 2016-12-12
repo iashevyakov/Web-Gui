@@ -1,13 +1,9 @@
 package ru.itis.inform.servlets;
 
-import ru.itis.inform.errors.Error;
 import ru.itis.inform.factories.ServiceFactory;
-import ru.itis.inform.messages.Message;
 import ru.itis.inform.models.User;
 import ru.itis.inform.services.TokenService;
-import ru.itis.inform.services.TokenServiceImpl;
 import ru.itis.inform.services.UserService;
-import ru.itis.inform.services.UserServiceImpl;
 import ru.itis.inform.utils.MD5Util;
 import ru.itis.inform.utils.Token;
 
@@ -15,7 +11,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 public class Login extends HttpServlet {

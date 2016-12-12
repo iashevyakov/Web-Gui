@@ -6,5 +6,6 @@ package ru.itis.inform.dao;
 public interface NodeDao {
 
     void addNode(String node, String unit);
+    void deleteNode(String node);
 
 }

@@ -5,6 +5,7 @@ import ru.itis.inform.models.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 public interface UserDao {
@@ -14,6 +15,8 @@ public interface UserDao {
     User findUserLogin(String login);
 
     User findUserId(String id);
+
+    LinkedList<User> findAll() throws SQLException;
 
 
 }

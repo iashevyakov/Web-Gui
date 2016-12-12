@@ -9,7 +9,8 @@ public class Detail {
 
     private String nodeName;
 
-    public Detail(String detailName,String firmName, String nodeName){this.firmName=firmName;this.detailName=detailName;this.nodeName=nodeName;}
+
+    public Detail(String detailName,String firmName, String nodeName,int quantity){this.firmName=firmName;this.detailName=detailName;this.nodeName=nodeName;this.quantity=quantity;}
 
     private int quantity;
 

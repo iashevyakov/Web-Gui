@@ -1,9 +1,9 @@
-package ru.itis.inform.dao;
+package ru.itis.inform.services;
 
 /**
- * Created by Иван on 04.11.2016.
+ * Created by Иван on 11.12.2016.
  */
-public interface FirmDao {
+public interface FirmService {
     void addFirm(String firm, String country,String date, String owner);
     void deleteFirm(String firm);
 }

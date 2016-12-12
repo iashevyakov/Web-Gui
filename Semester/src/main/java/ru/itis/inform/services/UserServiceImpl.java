@@ -2,16 +2,14 @@
 package ru.itis.inform.services;
 
 import ru.itis.inform.dao.UserDao;
-import ru.itis.inform.dao.UserDaoImpl;
-import ru.itis.inform.errors.Error;
 import ru.itis.inform.factories.DaoFactory;
-import ru.itis.inform.messages.Message;
+
 import ru.itis.inform.models.User;
 import ru.itis.inform.utils.MD5Util;
 import ru.itis.inform.verifiers.UserVerify;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.LinkedList;
 
 public class UserServiceImpl implements UserService {
 
@@ -21,34 +19,39 @@ public class UserServiceImpl implements UserService {
         this.userDao = DaoFactory.getInstance().getUserDao();
     }
 
-    public void add(String name, String login, String password, String passwordAgain, boolean is_admin, boolean is_workman) {
+    public boolean add(String name, String login, String password, boolean is_admin, boolean is_workman) {
 
 
-            if (password.equals(passwordAgain)) {
+        User newUser = null;
 
-                User newUser = null;
+        try {
 
-                try {
+            password = MD5Util.md5Apache(password);
 
-                    password = MD5Util.md5Apache(password);
+            newUser = new User(name, login, password, is_admin, is_workman);
 
-                    newUser = new User(name, login, password, is_admin, is_workman);
-
-                    if (UserVerify.checkUserInBD(userDao, login) == null) {
-                        userDao.addUser(newUser);
-                    }
-                }
-                catch (SQLException e) {
-
-                    e.printStackTrace();
-
-                }
+            if (UserVerify.checkUserInBD(userDao, login) == null) {
+                userDao.addUser(newUser);
+                return true;
+            } else {
+                return false;
             }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return false;
+
+        }
 
     }
 
-    public List<User> findAll() {
-        return null;
+
+
+
+    public LinkedList<User> findAll() throws SQLException {
+        LinkedList<User> list = new LinkedList<User>();
+        list = userDao.findAll();
+        return list;
     }
 
 

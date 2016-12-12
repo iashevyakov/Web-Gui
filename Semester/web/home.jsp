@@ -1,4 +1,5 @@
-<%@ page import="ru.itis.inform.models.User" %><%--
+<%@ page import="ru.itis.inform.models.User" %>
+<%@ page import="ru.itis.inform.errors.Err" %><%--
   Created by IntelliJ IDEA.
   User: Иван
   Date: 24.10.2016
@@ -18,64 +19,48 @@
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<h1>Welcome, <%=request.getAttribute("current_user")%> !</h1>
 <br><br>
 <%User user = (User) request.getAttribute("current_user");
     if (user.getIs_admin()){
 %>
 
-<div id="login">
-    <form id="1" action="/home" method="post">
-        <fieldset class="clearfix" >
-            <p><span class="fontawesome-user"></span><input type="text" name="name" value="Имя" onBlur="if(this.value == '') this.value = 'Имя'" onFocus="if(this.value == 'Имя') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="username"  value="Имя пользователя" onBlur="if(this.value == '') this.value = 'Имя пользователя'" onFocus="if(this.value == 'Имя пользователя') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
-            <p><span class="fontawesome-lock"></span><input type="text" name="password"  value="Пароль" onBlur="if(this.value == '') this.value = 'Пароль'" onFocus="if(this.value == 'Пароль') this.value = ''" required></p>
-            <p><span class="fontawesome-lock"></span><input type="text" name="password2"  value="Повторите пароль" onBlur="if(this.value == '') this.value = 'Повторите пароль'" onFocus="if(this.value == 'Повторите пароль') this.value = ''" required></p>
-            <p><select  class="styled-select" name="work" id="work">
+<table class="table table-bordered">
 
-                <option value="workman">Рабочий</option>
+    <tr><td><p><a href="/duCountry" class="btn btn-warning">D/U a Country</a></p></td><td><p><a href="/addCountry" class="btn btn-success">Add a Country</a></p></td></tr>
+    <tr><td><p><a href="/duFirm" class="btn btn-warning">D/U a Firm</a></p></td><td><p><a href="/addFirm" class="btn btn-success">Add a Firm</a></p></td></tr>
+    <tr><td><p><a href="/duMark" class="btn btn-warning">D/U a Mark</a></p></td><td><p><a href="/addMark" class="btn btn-success">Add a Mark</a></p></td></tr>
+    <tr><td><p><a href="/duUnit" class="btn btn-warning">D/U an Unit</a></p></td><td><p><a href="/addUnit" class="btn btn-success">Add an Unit</a></p></td></tr>
+    <tr><td><p><a href="/duNode" class="btn btn-warning">D/U a Node</a></p></td><td><p><a href="/addNode" class="btn btn-success">Add a Node</a></p></td></tr>
+    <tr><td><p><a href="/duDetail" class="btn btn-warning">D/U a Detail</a></p></td><td><p><a href="/addDetail" class="btn btn-success">Add a Detail</a></p></td></tr>
+    <tr><td><p><a href="/users" class="btn btn-warning">Show Users</a></p></td><td><p><a href="/registration" class="btn btn-success">Create an User</a></p></td></tr>
+</table>
 
-                <option value="wholesaler">Оптовик</option>
-
-            </select>
-            </p>
-            <p><input type="submit" value="Зарегистрировать"></p>
-        </fieldset>
-    </form>
-
-</div>
+<p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p>
 
 
-<center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
-<%if (request.getAttribute("success")!=null){%>
-<div class="div2"><%=request.getAttribute("success")%></div>
-<%}%>
-<%if (request.getAttribute("fail")!=null){%>
-<div class="div2"><%=request.getAttribute("fail")%></div>
-<%}%>
+
+
+
+
 <%}
     else {%>
     <%if (user.getIs_workman()){%>
 <div id="login">
     <form action="/home" method="post" >
         <fieldset class="clearfix">
-            <p><span class="glyphicon-pencil"></span><input type="text" name="country" value="Страна" onBlur="if(this.value == '') this.value = 'Страна'" onFocus="if(this.value == 'Страна') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="glyphicon-pencil"></span><input type="text" name="firm"  value="Фирма" onBlur="if(this.value == '') this.value = 'Фирма'" onFocus="if(this.value == 'Фирма') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
-            <p><span class="glyphicon-pencil"></span><input type="text" name="mark"  value="Марка" onBlur="if(this.value == '') this.value = 'Марка'" onFocus="if(this.value == 'Марка') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="unit"  value="Агрегат" onBlur="if(this.value == '') this.value = 'Агрегат'" onFocus="if(this.value == 'Агрегат') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="node"  value="Узел" onBlur="if(this.value == '') this.value = 'Узел'" onFocus="if(this.value == 'Узел') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="detail"  value="Деталь" onBlur="if(this.value == '') this.value = 'Деталь'" onFocus="if(this.value == 'Деталь') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="number"  value="Количество" onBlur="if(this.value == '') this.value = 'Количество'" onFocus="if(this.value == 'Количество') this.value = ''" required></p>
-            <p><input type="submit" value="Продать"></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="mark"  value="Mark" onBlur="if(this.value == '') this.value = 'Mark'" onFocus="if(this.value == 'Mark') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="unit"  value="Unit" onBlur="if(this.value == '') this.value = 'Unit'" onFocus="if(this.value == 'Unit') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="node"  value="Node" onBlur="if(this.value == '') this.value = 'Node'" onFocus="if(this.value == 'Node') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="detail"  value="Detail" onBlur="if(this.value == '') this.value = 'Detail'" onFocus="if(this.value == 'Detail') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="number"  value="Quantity" onBlur="if(this.value == '') this.value = 'Quantity'" onFocus="if(this.value == 'Quantity') this.value = ''" required></p>
+            <p><input type="submit" value="SELL"></p>
         </fieldset>
     </form>
 </div>
-<%if (request.getAttribute("success")!=null){%>
-<div class="div3"><%=request.getAttribute("success")%></div>
-<%}%>
-<%if (request.getAttribute("fail")!=null){%>
-<div class="div3"><%=request.getAttribute("fail")%></div>
-<%}%>
+<%if (!Err.message.equals("")){%>
+<div class="div3"><%=Err.message%></div>
+<%Err.message="";}%>
+
 
 
 <center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
@@ -83,25 +68,22 @@
 <div id="login">
     <form action="/home" method="post" >
         <fieldset class="clearfix">
-            <p><span class="glyphicon-pencil"></span><input type="text" name="country" value="Страна" onBlur="if(this.value == '') this.value = 'Страна'" onFocus="if(this.value == 'Страна') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="glyphicon-pencil"></span><input type="text" name="firm"  value="Фирма" onBlur="if(this.value == '') this.value = 'Фирма'" onFocus="if(this.value == 'Фирма') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
-            <p><span class="glyphicon-pencil"></span><input type="text" name="mark"  value="Марка" onBlur="if(this.value == '') this.value = 'Марка'" onFocus="if(this.value == 'Марка') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="unit"  value="Агрегат" onBlur="if(this.value == '') this.value = 'Агрегат'" onFocus="if(this.value == 'Агрегат') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="node"  value="Узел" onBlur="if(this.value == '') this.value = 'Узел'" onFocus="if(this.value == 'Узел') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="detail"  value="Деталь" onBlur="if(this.value == '') this.value = 'Деталь'" onFocus="if(this.value == 'Деталь') this.value = ''" required></p>
-            <p><span class="glyphicon-pencil"></span><input type="text" name="number"  value="Количество" onBlur="if(this.value == '') this.value = 'Количество'" onFocus="if(this.value == 'Количество') this.value = ''" required></p>
-            <p><input type="submit" value="Отправить деталь"></p>
+
+            <p><span class="glyphicon-pencil"></span><input type="text" name="mark"  value="Mark" onBlur="if(this.value == '') this.value = 'Mark'" onFocus="if(this.value == 'Mark') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="unit"  value="Unit" onBlur="if(this.value == '') this.value = 'Unit'" onFocus="if(this.value == 'Unit') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="node"  value="Node" onBlur="if(this.value == '') this.value = 'Node'" onFocus="if(this.value == 'Node') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="detail"  value="Detail" onBlur="if(this.value == '') this.value = 'Detail'" onFocus="if(this.value == 'Detail') this.value = ''" required></p>
+            <p><span class="glyphicon-pencil"></span><input type="text" name="number"  value="Quantity" onBlur="if(this.value == '') this.value = 'Quantity'" onFocus="if(this.value == 'Quantity') this.value = ''" required></p>
+            <p><input type="submit" value="SEND"></p>
         </fieldset>
     </form>
 </div>
 
 <center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
-<%if (request.getAttribute("success")!=null){%>
-<div class="div1"> <%=request.getAttribute("success")%></div>
-<%}%>
-<%if (request.getAttribute("fail")!=null){%>
-<div class="div1"> <%=request.getAttribute("fail")%></div>
-<%}%>
+<%if (!Err.message.equals("")){%>
+<div class="div1"> <%=Err.message%></div>
+<%Err.message="";}%>
+
     <%}%>
 <%}%>
 

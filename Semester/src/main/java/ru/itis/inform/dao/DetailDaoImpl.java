@@ -1,43 +1,55 @@
 package ru.itis.inform.dao;
 
+
+
+import ru.itis.inform.errors.Check;
+import ru.itis.inform.errors.Err;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.util.regex.Matcher;
 
 public class DetailDaoImpl implements DetailDao {
 
-    public void updateDetail(String detail,String number) {
+    private Matcher m ;
 
-        if (JDBConnection.getInstance().getConnection() != null && !detail.equals("")) {
+    public void sendDetail(String detail, String number) {
 
-            int num = Integer.parseInt(number);
+            if (JDBConnection.getInstance().getConnection() != null) {
 
-            String req = "UPDATE details SET quantity = quantity + ? WHERE detail_name= ? ;";
+                int num = Integer.parseInt(number);
+
+                String req = "SELECT * FROM update_det_plus(?,?);";
 
 
-            try {
-                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+                try {
+                    JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
 
-                JDBConnection.statement.setInt(1, num);
+                    JDBConnection.statement.setString(1, detail);
 
-                JDBConnection.statement.setString(2, detail);
+                    JDBConnection.statement.setInt(2, num);
 
-                JDBConnection.statement.executeUpdate();
+                    JDBConnection.statement.executeQuery();
 
-            } catch (SQLException sql) {
+                    Err.message="THE DETAIL IS SENT!";
 
-                sql.printStackTrace();
+                } catch (SQLException sql) {
+
+                    Err.message="SORRY! SERVER ERROR!";
+
+                }
 
             }
+            else{Err.message="SORRY! SERVER ERROR!";}
 
-        }
 
     }
-    public void addDetail(String detail,String firm,String number, String node)
-    {
-        if (JDBConnection.getInstance().getConnection() != null && !firm.equals("")) {
+    public void addDetail(String detail,String firm, String node) {
+        if (JDBConnection.getInstance().getConnection() != null) {
 
-            String req = "INSERT INTO details (detail_name,firm_name,quantity,node_name) VALUES (?,?,?,?)";
+            String req = "INSERT INTO details (detail_name,firm_name,node_name) VALUES (?,?,?)";
 
-            int num=Integer.parseInt(number);
 
             try {
                 JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
@@ -46,48 +58,80 @@ public class DetailDaoImpl implements DetailDao {
 
                 JDBConnection.statement.setString(2, firm);
 
-                JDBConnection.statement.setInt(3, num);
-
-                JDBConnection.statement.setString(4, node);
+                JDBConnection.statement.setString(3, node);
 
                 JDBConnection.statement.executeUpdate();
 
+                Err.message="THE DETAIL IS ADDED";
+
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message="CHECK YOUR ENTERED DATA! THE NAME OF DETAIL SHOULD BE IN (2,16)!";
 
             }
 
         }
+        else{Err.message="SORRY! SERVER ERROR!";}
     }
-    public void buyDetail(String detail, String number) {
+    public void sellDetail(String detail, String number)  {
 
 
-        if (JDBConnection.getInstance().getConnection() != null && !detail.equals("")) {
 
-        int num = Integer.parseInt(number);
+        if (JDBConnection.getInstance().getConnection() != null) {
 
-        String req = "UPDATE details SET quantity = quantity - ? WHERE detail_name= ? ;";
+            int num = Integer.parseInt(number);
+
+            String req = "SELECT  * FROM update_det_minus(?,?);";
 
 
-        try {
-            JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
 
-            JDBConnection.statement.setInt(1, num);
+                JDBConnection.statement.setString(1, detail);
 
-            JDBConnection.statement.setString(2, detail);
+                JDBConnection.statement.setInt(2, num);
 
-            JDBConnection.statement.executeUpdate();
+                JDBConnection.statement.executeQuery();
 
-        } catch (SQLException sql) {
+                Err.message="THE DETAIL IS SOLD!";
 
-            sql.printStackTrace();
+            } catch (SQLException sql) {
 
-        }
+                Err.message="WE HAVEN'T SO MANY PIECE OF THE DETAIL! TRY TO SELL LESS!";
+
+            }
+
 
     }
+    else{Err.message="SORRY! SERVER ERROR!";}
+
 
 }
+
+    public void deleteDetail(String detail) {
+
+        if (JDBConnection.getInstance().getConnection() != null) {
+
+            String req = "SELECT * FROM delete(?,'detail') ";
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                JDBConnection.statement.setString(1, detail);
+
+                JDBConnection.statement.executeQuery();
+
+                Err.message="THE DETAIL IS DELETED!";
+
+            } catch (SQLException sql) {
+
+                Err.message="SORRY! SERVER ERROR!";
+
+            }
+
+        }
+        else{Err.message="SORRY! SERVER ERROR!";}
+    }
 
 
 
