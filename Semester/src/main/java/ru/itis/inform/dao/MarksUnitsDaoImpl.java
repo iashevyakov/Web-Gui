@@ -1,8 +1,12 @@
 package ru.itis.inform.dao;
 
 import ru.itis.inform.errors.Err;
+import ru.itis.inform.models.Mark;
+import ru.itis.inform.models.Unit;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import static ru.itis.inform.verifiers.MarkVerify.checkMark;
 import static ru.itis.inform.verifiers.UnitVerify.checkUnit;
@@ -84,20 +88,28 @@ public class MarksUnitsDaoImpl implements MarksUnitsDao {
         if (JDBConnection.getInstance().getConnection() != null ) {
 
             String req = "INSERT INTO units (unit_name,inventor_name,inventor_country,foundation) VALUES (?,?,?,?)";
-
             try {
-                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
 
-                JDBConnection.statement.setString(1, unit);
-                JDBConnection.statement.setString(2, inventor_name);
-                JDBConnection.statement.setString(3, inventor_country);
-                JDBConnection.statement.setString(4, foundation);
-                JDBConnection.statement.executeUpdate();
-                Err.message="THE UNIT IS ADDED!";
-            } catch (SQLException sql) {
+                Date d = Date.valueOf(foundation);
 
-                Err.message="CHECK YOUR ENTERED DATA!";
 
+                try {
+                    JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                    JDBConnection.statement.setString(1, unit);
+                    JDBConnection.statement.setString(2, inventor_name);
+                    JDBConnection.statement.setString(3, inventor_country);
+                    JDBConnection.statement.setDate(4, d);
+                    JDBConnection.statement.executeUpdate();
+                    Err.message = "THE UNIT IS ADDED!";
+                } catch (SQLException sql) {
+
+                    Err.message = "CHECK YOUR ENTERED DATA!";
+
+                }
+            }
+            catch (Exception e){
+                Err.message="IMPOSSIBLE DATE!";
             }
 
         }
@@ -127,6 +139,15 @@ public class MarksUnitsDaoImpl implements MarksUnitsDao {
         }
         else{Err.message="SORRY! SERVER ERROR!";}
     }
+
+    public LinkedList<Mark> findAllMarks() {
+        return null;
+    }
+
+    public LinkedList<Unit> findAllUnits() {
+        return null;
+    }
+
     public void deleteUnit(String unit) {
         if (JDBConnection.getInstance().getConnection() != null) {
 
@@ -138,6 +159,8 @@ public class MarksUnitsDaoImpl implements MarksUnitsDao {
                 JDBConnection.statement.setString(1, unit);
 
                 JDBConnection.statement.executeQuery();
+
+                Err.message="THE UNIT IS DELETED!";
 
             } catch (SQLException sql) {
 

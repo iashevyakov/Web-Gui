@@ -1,9 +1,11 @@
 package ru.itis.inform.dao;
 
 import ru.itis.inform.errors.Err;
+import ru.itis.inform.models.Firm;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  * Created by Иван on 04.11.2016.
@@ -75,5 +77,9 @@ public class FirmDaoImpl implements FirmDao {
 
         }
         else{Err.message="SORRY! SERVER ERROR!";}
+    }
+
+    public LinkedList<Firm> findAll() {
+        return null;
     }
 }

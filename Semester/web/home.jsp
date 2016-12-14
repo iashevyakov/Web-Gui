@@ -31,7 +31,7 @@
     <tr><td><p><a href="/duMark" class="btn btn-warning">D/U a Mark</a></p></td><td><p><a href="/addMark" class="btn btn-success">Add a Mark</a></p></td></tr>
     <tr><td><p><a href="/duUnit" class="btn btn-warning">D/U an Unit</a></p></td><td><p><a href="/addUnit" class="btn btn-success">Add an Unit</a></p></td></tr>
     <tr><td><p><a href="/duNode" class="btn btn-warning">D/U a Node</a></p></td><td><p><a href="/addNode" class="btn btn-success">Add a Node</a></p></td></tr>
-    <tr><td><p><a href="/duDetail" class="btn btn-warning">D/U a Detail</a></p></td><td><p><a href="/addDetail" class="btn btn-success">Add a Detail</a></p></td></tr>
+    <tr><td><p><a href="/duDetail" class="btn btn-warning">D/U a Detail</a></p></td><td><p><a href="/addDetail" class="btn btn-success">Add a Detail</a></p></td><td><p><a href="/details" class="btn btn-primary">Show Catalog</a></p></td></tr>
     <tr><td><p><a href="/users" class="btn btn-warning">Show Users</a></p></td><td><p><a href="/registration" class="btn btn-success">Create an User</a></p></td></tr>
 </table>
 

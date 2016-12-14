@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>DU Node</title>
+    <title>Add a Node</title>
     <meta charset="UTF-8">
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -20,21 +20,20 @@
 <body>
 
 <div id="login">
-    <form id="1" action="/duNode" method="post">
+    <form id="1" action="/addNode" method="post">
         <fieldset class="clearfix" >
+            <p><span class="fontawesome-user"></span><input type="text" name="unit" value="Unit" onBlur="if(this.value == '') this.value = 'Unit'" onFocus="if(this.value == 'Unit') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
             <p><span class="fontawesome-user"></span><input type="text" name="node" value="Node" onBlur="if(this.value == '') this.value = 'Node'" onFocus="if(this.value == 'Node') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><select  class="styled-select" name="option" id="work">
-                <option value="delete">DELETE</option>
-                <option value="update">UPDATE</option>
-            </select>
-            </p>
-            <p><input type="submit" value="PERFORM"></p>
+            <p><span class="fontawesome-user"></span><input type="text" name="inventor_name" value="Name of Inventor" onBlur="if(this.value == '') this.value = 'Name of Inventor'" onFocus="if(this.value == 'Name of Inventor') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fontawesome-user"></span><input type="text" name="inventor_country" value="Country of Inventor" onBlur="if(this.value == '') this.value = 'Country of Inventor'" onFocus="if(this.value == 'Country of Inventor') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fontawesome-user"></span><input type="text" name="date" value="Foundation:YYYY-MM-DD" onBlur="if(this.value == '') this.value = 'Foundation:YYYY-MM-DD'" onFocus="if(this.value == 'Foundation:YYYY-MM-DD') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><input type="submit" value="Add"></p>
         </fieldset>
     </form>
-
     <%if (!Err.message.equals("")){%>
     <div class="div2"><%=Err.message%></div>
     <%Err.message="";}%>
+
 
 </div>
 <p><a href="/home" class="btn btn-danger">Back(<%=request.getAttribute("current_user")%>)</a></p>

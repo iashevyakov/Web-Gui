@@ -70,6 +70,8 @@ p {
 	line-height: 50px;
 	text-align: center;
 	width: 50px;
+
+
 }
 
 
@@ -78,7 +80,7 @@ p {
 	outline:none;
 }
 
-#login form input[type="text"], input[type="password"], input[type="number"] {
+#login form input[type="text"], input[type="password"], input[type="number"],select.styled-select {
 	background-color: #3b4148;
 	border-radius: 0px 3px 3px 0px;
 	-moz-border-radius: 0px 3px 3px 0px;
@@ -98,7 +100,7 @@ p {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	background-color: #ea4c88;
+	background-color: mediumspringgreen;
 	color: #eee;
 	font-weight: bold;
 	margin-bottom: 2em;
@@ -117,7 +119,7 @@ select.custom-select{
 }
 
 #login form input[type="submit"]:hover {
-	background-color: springgreen;
+	background-color: #ea4c88;
 }
 
 #login > p {
@@ -238,13 +240,13 @@ div.div5{
 }
 select.styled-select {
 	background: transparent;
-	width: 247px;
+	width: 248px;
 	padding: 5px;
 	font-size: 16px;
 	border: 1px solid #ccc;
 	height: 34px;
-	margin-bottom: auto;
-	margin-top: auto;
+	margin-bottom: 1em;
+	margin-top: 1em;
 }
 .styled-select.slate {
 	background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
@@ -256,7 +258,7 @@ select.styled-select {
 	font-size: 16px;
 	height: 34px;
 	width: 247px;
-	margin-bottom: auto;
+	margin-bottom: 1em;
 }
 select.classic{
 	position: absolute;
@@ -268,4 +270,7 @@ a.btn-success{
 }
 a.btn-warning{
 	width: 130px;
+}
+a.btn-primary{
+	width: auto;
 }

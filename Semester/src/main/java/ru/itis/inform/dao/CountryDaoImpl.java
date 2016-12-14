@@ -1,11 +1,13 @@
 package ru.itis.inform.dao;
 
 import ru.itis.inform.errors.Err;
+import ru.itis.inform.models.Country;
 import ru.itis.inform.verifiers.DetailVerify;
 import ru.itis.inform.verifiers.FirmVerify;
 import ru.itis.inform.verifiers.NodeVerify;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 
 public class CountryDaoImpl implements CountryDao {
@@ -63,5 +65,9 @@ public class CountryDaoImpl implements CountryDao {
 
         }
         else{Err.message="SORRY! SERVER ERROR!";}
+    }
+
+    public LinkedList<Country> findAll() {
+        return null;
     }
 }

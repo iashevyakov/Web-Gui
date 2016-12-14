@@ -1,5 +1,6 @@
 <%@ page import="java.util.LinkedList" %>
-<%@ page import="ru.itis.inform.models.User" %><%--
+<%@ page import="ru.itis.inform.models.User" %>
+<%@ page import="ru.itis.inform.models.DetailsView" %><%--
   Created by IntelliJ IDEA.
   User: Иван
   Date: 04.12.2016
@@ -9,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Users</title>
+    <title>Catalog</title>
     <meta charset="UTF-8">
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -19,26 +20,18 @@
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<% LinkedList<User> list = (LinkedList) request.getAttribute("users");%>
-<table cellspacing="0">
+<% LinkedList<DetailsView> catalog = (LinkedList) request.getAttribute("details");%>
+<table  cellspacing="0">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Profession</th>
+        <th>Mark</th>
+        <th>Unit</th>
+        <th>Node</th>
+        <th>Detail</th>
+        <th>Firm</th>
+        <th>Quantity</th>
     </tr>
-    <%String profession;%>
-    <%for (int i=0; i<list.size();i++){%>
-    <%boolean admin = list.get(i).getIs_admin();
-        boolean workman = list.get(i).getIs_workman();
-        if(admin){profession = "Admin";}
-        else{
-            if(workman){profession="Workman";}
-            else{profession="WholeSaler";}
-        }
-    %>
-    <tr><td><%=list.get(i).getId()%></td><td><%=list.get(i).getName()%></td><td><%=list.get(i).getLogin()%></td><td><%=list.get(i).getPassword()%></td><td><%=profession%></td></tr>
+    <%for (int i=0; i<catalog.size();i++){%>
+    <tr><td><%=catalog.get(i).getMarkName()%></td><td><%=catalog.get(i).getUnitName()%></td><td><%=catalog.get(i).getNodeName()%></td><td><%=catalog.get(i).getDetailName()%></td><td><%=catalog.get(i).getFirmName()%></td><td><%=catalog.get(i).getQuantity()%></td></tr>
     <%}%>
 
 

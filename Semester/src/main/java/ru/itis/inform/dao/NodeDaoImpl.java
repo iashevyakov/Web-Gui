@@ -1,35 +1,50 @@
 package ru.itis.inform.dao;
 
 import ru.itis.inform.errors.Err;
+import ru.itis.inform.models.Node;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
-/**
- * Created by Иван on 05.11.2016.
- */
+
 public class NodeDaoImpl implements NodeDao {
 
 
-    public void addNode(String node, String unit) {
+    public void addNode(String unit, String node, String inventor_name, String inventor_country, String date) {
 
         if (JDBConnection.getInstance().getConnection() != null) {
 
-            String req = "INSERT INTO nodes (node_name,unit_name) VALUES (?,?)";
-
             try {
+                Date d = Date.valueOf(date);
 
-                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+                String req = "INSERT INTO nodes (node_name,unit_name,inventor_name,inventor_country,foundation) VALUES (?,?,?,?,?)";
 
-                JDBConnection.statement.setString(1, node);
+                try {
 
-                JDBConnection.statement.setString(2, unit);
+                    JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
 
-                JDBConnection.statement.executeUpdate();
+                    JDBConnection.statement.setString(1, node);
 
-            } catch (SQLException sql) {
+                    JDBConnection.statement.setString(2, unit);
 
-                sql.printStackTrace();
+                    JDBConnection.statement.setString(3, inventor_name);
 
+                    JDBConnection.statement.setString(4,inventor_country);
+
+                    JDBConnection.statement.setDate(5,d);
+
+                    JDBConnection.statement.executeUpdate();
+
+                    Err.message="THE NODE IS ADDED!";
+                } catch (SQLException sql) {
+
+                    Err.message="CHECK YOUR ENTERED DATA!";
+
+                }
+            }
+            catch (Exception e){
+                Err.message="IMPOSSIBLE DATE!";
             }
 
         }
@@ -47,14 +62,20 @@ public class NodeDaoImpl implements NodeDao {
 
                 JDBConnection.statement.executeQuery();
 
+                Err.message="THE NODE IS DELETED!";
+
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message="CHECK YOUR ENTERED DATA!";
 
             }
 
         }
         else{
             Err.message="SORRY! SERVER ERROR!";}
+    }
+
+    public LinkedList<Node> findAll() {
+        return null;
     }
 }

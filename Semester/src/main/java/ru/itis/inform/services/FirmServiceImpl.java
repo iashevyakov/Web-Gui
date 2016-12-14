@@ -43,6 +43,6 @@ public class FirmServiceImpl implements FirmService {
             }
 
         }
-        else{Err.message="FIRM SHOULD BE LIKE NONSPACING CHARS!";}
+        else{Err.message="CHECK YOUR ENTERED DATA!";}
     }
 }

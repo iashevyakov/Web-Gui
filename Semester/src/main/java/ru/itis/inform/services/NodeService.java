@@ -1,8 +1,6 @@
 package ru.itis.inform.services;
 
-/**
- * Created by Иван on 11.12.2016.
- */
 public interface NodeService {
     void deleteNode(String node);
+    void addNode(String node, String unit,String inventor_name, String inventor_country, String date);
 }

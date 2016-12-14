@@ -133,6 +133,39 @@
         <servlet-name>DUMark</servlet-name>
         <url-pattern>/duMark</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DUUnit</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.DeleteUnit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DUUnit</servlet-name>
+        <url-pattern>/duUnit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddUnit</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddUnit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddUnit</servlet-name>
+        <url-pattern>/addUnit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddNode</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.AddNode</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNode</servlet-name>
+        <url-pattern>/addNode</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowDetails</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.ShowDetails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowDetails</servlet-name>
+        <url-pattern>/details</url-pattern>
+    </servlet-mapping>
+
 
 
 </web-app>

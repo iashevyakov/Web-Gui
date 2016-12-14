@@ -78,7 +78,7 @@ public class DetailServiceImpl implements DetailService {
                 Err.message = "THE MARK ANT THE UNIT AREN'T COMPATIBLE FOR OUR SHOP!";
             }
         } else {
-            Err.message = "QUANTITY SHOULD BE POSITIVE NUMBER, PARTS SHOULD BE NONSPACING CHARS!";
+            Err.message = "CHECK YOUR ENTERED DATA!";
         }
 
 
@@ -104,7 +104,7 @@ public class DetailServiceImpl implements DetailService {
                 Err.message = "THE MARK ANT THE UNIT AREN'T COMPATIBLE FOR OUR SHOP!";
             }
         } else {
-            Err.message = "QUANTITY SHOULD BE POSITIVE NUMBER, PARTS SHOULD BE NONSPACING CHARS!";
+            Err.message = "CHECK YOUR ENTERED DATA!";
         }
 
 

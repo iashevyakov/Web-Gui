@@ -1,5 +1,10 @@
 package ru.itis.inform.dao;
 
+import ru.itis.inform.models.Mark;
+import ru.itis.inform.models.Unit;
+
+import java.util.LinkedList;
+
 /**
  * Created by Иван on 05.11.2016.
  */
@@ -10,4 +15,7 @@ public interface MarksUnitsDao {
     void addUnit(String unit, String inventor_name, String inventor_country, String foundation );
     void deleteUnit(String unit);
     void deleteMark(String mark);
+    LinkedList<Mark> findAllMarks();
+    LinkedList<Unit> findAllUnits();
+
 }
