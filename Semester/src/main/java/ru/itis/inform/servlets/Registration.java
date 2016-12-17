@@ -1,5 +1,6 @@
 package ru.itis.inform.servlets;
 
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.factories.ServiceFactory;
 import ru.itis.inform.services.UserService;
 
@@ -66,9 +67,9 @@ public class Registration extends HttpServlet {
 
             System.out.println(name + uname + password + profession);
             if (b) {
-                req.setAttribute("success", "User is successfully registered!");
+                Err.message="The User is registered!";
             } else {
-                req.setAttribute("fail", "User with THIS Username already exists!");
+                Err.message = "User with This Username already exists!";
             }
 
             req.setAttribute("current_user", session.getAttribute("current_user"));
@@ -78,7 +79,7 @@ public class Registration extends HttpServlet {
             requestDispatcher.forward(req, resp);
         } else {
 
-            req.setAttribute("fail", "Name and Username Should Be More than 2, password - more than 6");
+            Err.message="Check you name and password(>2 & >6)";
 
             req.setAttribute("current_user", session.getAttribute("current_user"));
 

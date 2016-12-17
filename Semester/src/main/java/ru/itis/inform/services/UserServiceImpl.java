@@ -2,6 +2,7 @@
 package ru.itis.inform.services;
 
 import ru.itis.inform.dao.UserDao;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.factories.DaoFactory;
 
 import ru.itis.inform.models.User;
@@ -38,12 +39,13 @@ public class UserServiceImpl implements UserService {
             }
         } catch (SQLException e) {
 
-            e.printStackTrace();
+            Err.message="SORRY! SERVER ERROR!";
             return false;
 
         }
 
     }
+
 
 
 
@@ -75,6 +77,21 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void delete(String username) {
+        boolean checkResult = false;
+        checkResult = UserVerify.check(username);
+        if(checkResult){
+            if (UserVerify.checkUserInBD(userDao, username) != null){
+                userDao.deleteUser(username);
+            }
+            else{
+                Err.message="The user doesn't exist!";
+            }
+        }
+        else{
+            Err.message="Check your entered data!";
+        }
+    }
 
 
 }

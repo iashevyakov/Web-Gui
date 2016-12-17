@@ -195,7 +195,6 @@ a.btn-danger{
 table.table-bordered{
 	width: auto;
 	position: absolute;
-	left: 550px;
 }
 div.div1 {
 	position: absolute;
@@ -272,5 +271,5 @@ a.btn-warning{
 	width: 130px;
 }
 a.btn-primary{
-	width: auto;
+	width: 130px;
 }

@@ -11,5 +11,6 @@ public interface UserService {
     LinkedList<User> findAll() throws SQLException;
     User find(String login);
     User findId(String id);
+    void delete(String username);
 
 }

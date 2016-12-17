@@ -4,12 +4,14 @@ import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Node;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 
 public class NodeDaoImpl implements NodeDao {
 
+    LinkedList<Node> nodes;
 
     public void addNode(String unit, String node, String inventor_name, String inventor_country, String date) {
 
@@ -76,6 +78,32 @@ public class NodeDaoImpl implements NodeDao {
     }
 
     public LinkedList<Node> findAll() {
-        return null;
+
+        if (JDBConnection.getInstance().getConnection() != null) {
+
+            nodes = new LinkedList<Node>();
+
+            String req = "SELECT * FROM nodes_view";
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                ResultSet resultSet = JDBConnection.statement.executeQuery();
+
+                while(resultSet.next()){
+
+                    nodes.add(new Node(resultSet.getString("node_name"),resultSet.getString("unit_name"),resultSet.getString("inventor_name"),resultSet.getString("inventor_country"),resultSet.getDate("foundation")));
+
+                }
+
+                return nodes;
+            } catch (SQLException sql) {
+
+                Err.message="SORRY! SERVER ERROR!";
+                return null;
+            }
+        }
+        else{Err.message="SORRY! SERVER ERROR!";return null;}
     }
 }
+

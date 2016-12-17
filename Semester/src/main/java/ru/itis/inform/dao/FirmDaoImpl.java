@@ -4,6 +4,7 @@ import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Firm;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
@@ -11,6 +12,8 @@ import java.util.LinkedList;
  * Created by Иван on 04.11.2016.
  */
 public class FirmDaoImpl implements FirmDao {
+
+    private LinkedList<Firm> firms;
 
 
     public void addFirm(String firm, String country,String date, String owner) {
@@ -80,6 +83,30 @@ public class FirmDaoImpl implements FirmDao {
     }
 
     public LinkedList<Firm> findAll() {
-        return null;
+        if (JDBConnection.getInstance().getConnection() != null) {
+
+            firms = new LinkedList<Firm>();
+
+            String req = "SELECT * FROM firms_view";
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                ResultSet resultSet = JDBConnection.statement.executeQuery();
+
+                while(resultSet.next()){
+
+                    firms.add(new Firm(resultSet.getString("firm_name"),resultSet.getString("country_name"),resultSet.getDate("foundation"),resultSet.getString("owner_name")));
+
+                }
+
+                return firms;
+            } catch (SQLException sql) {
+
+                Err.message="SORRY! SERVER ERROR!";
+                return null;
+            }
+        }
+        else{Err.message="SORRY! SERVER ERROR!";return null;}
     }
 }

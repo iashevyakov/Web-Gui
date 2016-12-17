@@ -18,5 +18,7 @@ public interface UserDao {
 
     LinkedList<User> findAll() throws SQLException;
 
+    void deleteUser(String username);
+
 
 }

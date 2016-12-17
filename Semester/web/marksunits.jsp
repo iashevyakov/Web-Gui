@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Units</title>
+    <title>MarkUnit</title>
     <meta charset="UTF-8">
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -19,16 +19,14 @@
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<% LinkedList<Unit> units = (LinkedList) request.getAttribute("units");%>
+<% LinkedList<MarkUnit> markUnits = (LinkedList) request.getAttribute("markunit");%>
 <table  cellspacing="0">
     <tr>
+        <th>Mark</th>
         <th>Unit</th>
-        <th>Name of Inventor</th>
-        <th>Country of Inventor</th>
-        <th>Foundation</th>
     </tr>
-    <%for (int i = 0; i< units.size(); i++){%>
-    <tr><td><%=units.get(i).getUnitName()%></td><td><%=units.get(i).getInventorName()%></td><td><%=units.get(i).getInventorCountry()%></td><td><%=units.get(i).getFoundation()%></td></tr>
+    <%for (int i = 0; i< markUnits.size(); i++){%>
+    <tr><td><%=markUnits.get(i).getMark()%></td><td><%=markUnits.get(i).getUnit()%></td></tr>
     <%}%>
 
 

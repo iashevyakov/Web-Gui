@@ -33,7 +33,7 @@ public class CountryVerify {
 
             while (resultSet.next()) {
 
-                return new Country(resultSet.getString("country_name"));
+                return new Country(resultSet.getString("country_name"),null,null,false);
             }
         } catch (SQLException sql) {
 

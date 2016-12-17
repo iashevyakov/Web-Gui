@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
 <head>
     <title>Home</title>
     <meta charset="UTF-8">
@@ -17,8 +17,32 @@
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/style.css" media="screen" type="text/css" />
     <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+        a.btn-primary{
+            width: 130px;
+
+        }
+        table.table-bordered{
+            position: absolute;
+            left:475px;
+        }
+        div.auth{
+            position: absolute;
+            left: 575px;
+            bottom: 25px;
+        }
+        div.divhome {
+            position: absolute;
+            font-family: "Comic Sans MS";
+            bottom: 125px;
+            left: 580px;
+            color: #ffffff;
+            font-size: medium;
+        }
+    </style>
+
 </head>
-<body>
+
 <br><br>
 <%User user = (User) request.getAttribute("current_user");
     if (user.getIs_admin()){
@@ -26,13 +50,14 @@
 
 <table class="table table-bordered">
 
-    <tr><td><p><a href="/duCountry" class="btn btn-warning">D/U a Country</a></p></td><td><p><a href="/addCountry" class="btn btn-success">Add a Country</a></p></td></tr>
-    <tr><td><p><a href="/duFirm" class="btn btn-warning">D/U a Firm</a></p></td><td><p><a href="/addFirm" class="btn btn-success">Add a Firm</a></p></td></tr>
-    <tr><td><p><a href="/duMark" class="btn btn-warning">D/U a Mark</a></p></td><td><p><a href="/addMark" class="btn btn-success">Add a Mark</a></p></td></tr>
-    <tr><td><p><a href="/duUnit" class="btn btn-warning">D/U an Unit</a></p></td><td><p><a href="/addUnit" class="btn btn-success">Add an Unit</a></p></td></tr>
-    <tr><td><p><a href="/duNode" class="btn btn-warning">D/U a Node</a></p></td><td><p><a href="/addNode" class="btn btn-success">Add a Node</a></p></td></tr>
-    <tr><td><p><a href="/duDetail" class="btn btn-warning">D/U a Detail</a></p></td><td><p><a href="/addDetail" class="btn btn-success">Add a Detail</a></p></td><td><p><a href="/details" class="btn btn-primary">Show Catalog</a></p></td></tr>
-    <tr><td><p><a href="/users" class="btn btn-warning">Show Users</a></p></td><td><p><a href="/registration" class="btn btn-success">Create an User</a></p></td></tr>
+    <tr><td><p><a href="/duCountry" class="btn btn-warning">Delete a Country</a></p></td><td><p><a href="/addCountry" class="btn btn-success">Add a Country</a></p></td><td><p><a href="/countries" class="btn btn-primary">Show Countries</a></p></td></tr>
+    <tr><td><p><a href="/duFirm" class="btn btn-warning">Delete a Firm</a></p></td><td><p><a href="/addFirm" class="btn btn-success">Add a Firm</a></p></td><td><p><a href="/firms" class="btn btn-primary">Show Firms</a></p></td></tr>
+    <tr><td><p><a href="/duMark" class="btn btn-warning">Delete a Mark</a></p></td><td><p><a href="/addMark" class="btn btn-success">Add a Mark</a></p></td><td><p><a href="/marks" class="btn btn-primary">Show Marks</a></p></td></tr>
+    <tr><td><p><a href="/duUnit" class="btn btn-warning">Delete an Unit</a></p></td><td><p><a href="/addUnit" class="btn btn-success">Add an Unit</a></p></td><td><p><a href="/units" class="btn btn-primary">Show Units</a></p></td></tr>
+    <tr><td><p><a href="/duMarksUnits" class="btn btn-warning">Delete a MarkUnit</a></p></td><td><p><a href="/addMarksUnits" class="btn btn-success">Add a MarkUnit</a></p></td><td><p><a href="/marksunits" class="btn btn-primary">Show MarkUnit</a></p></td></tr>
+    <tr><td><p><a href="/duNode" class="btn btn-warning">Delete a Node</a></p></td><td><p><a href="/addNode" class="btn btn-success">Add a Node</a></p></td><td><p><a href="/nodes" class="btn btn-primary">Show Nodes</a></p></td></tr>
+    <tr><td><p><a href="/duDetail" class="btn btn-warning">Delete a Detail</a></p></td><td><p><a href="/addDetail" class="btn btn-success">Add a Detail</a></p></td><td><p><a href="/details" class="btn btn-primary">Show Catalog</a></p></td></tr>
+    <tr><td><p><a href="/duUser" class="btn btn-warning">Delete an User</a></p></td><td><p><a href="/registration" class="btn btn-success">Add an User</a></p></td><td><p><a href="/users" class="btn btn-primary">Show Users</a></p></td></tr>
 </table>
 
 <p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p>
@@ -45,7 +70,7 @@
 <%}
     else {%>
     <%if (user.getIs_workman()){%>
-<div id="login">
+<div id="login" class="auth">
     <form action="/home" method="post" >
         <fieldset class="clearfix">
             <p><span class="glyphicon-pencil"></span><input type="text" name="mark"  value="Mark" onBlur="if(this.value == '') this.value = 'Mark'" onFocus="if(this.value == 'Mark') this.value = ''" required></p>
@@ -58,14 +83,14 @@
     </form>
 </div>
 <%if (!Err.message.equals("")){%>
-<div class="div3"><%=Err.message%></div>
+<div class="divhome"><%=Err.message%></div>
 <%Err.message="";}%>
 
 
 
 <center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
 <%}else {%>
-<div id="login">
+<div id="login" class="auth">
     <form action="/home" method="post" >
         <fieldset class="clearfix">
 
@@ -81,7 +106,7 @@
 
 <center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
 <%if (!Err.message.equals("")){%>
-<div class="div1"> <%=Err.message%></div>
+<div class="divhome"> <%=Err.message%></div>
 <%Err.message="";}%>
 
     <%}%>

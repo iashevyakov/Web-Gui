@@ -77,11 +77,11 @@ public class MarkVerify {
         }
         m = Check.parts.matcher(mark);
         if(m.matches()){
-            return true;
-        }
+            return true;}
         else{
             return false;
         }
+
     }
 }
 

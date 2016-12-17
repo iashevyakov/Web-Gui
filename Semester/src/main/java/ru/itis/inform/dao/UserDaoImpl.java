@@ -1,6 +1,7 @@
 package ru.itis.inform.dao;
 
 import org.postgresql.core.JdbcCallParseInfo;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.User;
 
 import java.sql.*;
@@ -35,7 +36,7 @@ public class UserDaoImpl implements UserDao {
 
             } catch (SQLException e) {
 
-                e.printStackTrace();
+                Err.message="CHECK YOUR ENTERED DATA!";
 
             }
         }
@@ -81,6 +82,30 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
+    public void deleteUser(String username) {
+        if (JDBConnection.getInstance().getConnection() != null) {
+
+            String req = "DELETE FROM users WHERE login= ?";
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                JDBConnection.statement.setString(1, username);
+
+                JDBConnection.statement.executeUpdate();
+
+                Err.message="The User is Deleted!";
+
+            } catch (SQLException sql) {
+
+                Err.message="SORRY! SERVER ERROR!";
+
+            }
+
+        }
+        else{Err.message="SORRY! SERVER ERROR!";}
+    }
+
 
     public User find(String request, String element) {
         try {
@@ -97,7 +122,7 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException sql) {
 
-            sql.printStackTrace();
+            Err.message = "SORRY! SERVER ERROR!";
 
         }
         return null;

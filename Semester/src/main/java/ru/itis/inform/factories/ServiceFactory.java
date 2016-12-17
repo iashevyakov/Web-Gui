@@ -1,5 +1,6 @@
 package ru.itis.inform.factories;
 
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.services.*;
 
 import java.io.FileInputStream;
@@ -18,6 +19,7 @@ public class ServiceFactory {
     private MarkService markService;
     private UnitService unitService;
     private FirmService firmService;
+    private MarkUnitService markUnitService;
 
     private ServiceFactory() {
         try {
@@ -31,9 +33,9 @@ public class ServiceFactory {
             String nodeServiceClass = properties.getProperty("nodeService.class");
             String countryServiceClass = properties.getProperty("countryService.class");
             String markServiceClass = properties.getProperty("markService.class");
-            String unitServiceClass=properties.getProperty("unitService.class");
-            String firmServiceClass=properties.getProperty("firmService.class");
-
+            String unitServiceClass = properties.getProperty("unitService.class");
+            String firmServiceClass = properties.getProperty("firmService.class");
+            String markUnitServiceClass = properties.getProperty("markUnitService.class");
             this.userService = (UserService) Class.forName(userServiceClass).newInstance();
             this.tokenService = (TokenService) Class.forName(tokenServiceClass).newInstance();
             this.detailService = (DetailService) Class.forName(detailServiceClass).newInstance();
@@ -42,16 +44,17 @@ public class ServiceFactory {
             this.markService = (MarkService) Class.forName(markServiceClass).newInstance();
             this.unitService = (UnitService) Class.forName(unitServiceClass).newInstance();
             this.firmService = (FirmService) Class.forName(firmServiceClass).newInstance();
+            this.markUnitService = (MarkUnitService) Class.forName(markUnitServiceClass).newInstance();
 
 
         } catch (IOException e) {
-            throw new IllegalArgumentException(e);
+            Err.message = "SORRY! SERVER ERROR!";
         } catch (ClassNotFoundException e) {
-            throw new IllegalArgumentException();
+            Err.message = "SORRY! SERVER ERROR!";
         } catch (IllegalAccessException e) {
-            throw new IllegalArgumentException();
+            Err.message = "SORRY! SERVER ERROR!";
         } catch (InstantiationException e) {
-            throw new IllegalArgumentException();
+            Err.message = "SORRY! SERVER ERROR!";
         }
     }
 
@@ -75,13 +78,26 @@ public class ServiceFactory {
         return detailService;
     }
 
-    public NodeService getNodeService(){return nodeService;}
+    public NodeService getNodeService() {
+        return nodeService;
+    }
 
-    public CountryService getCountryService(){return countryService;}
+    public CountryService getCountryService() {
+        return countryService;
+    }
 
-    public MarkService getMarkService(){return markService;}
+    public MarkService getMarkService() {
+        return markService;
+    }
 
-    public UnitService getUnitService() {return unitService;}
+    public UnitService getUnitService() {
+        return unitService;
+    }
 
-    public FirmService getFirmService() {return firmService;}
+    public FirmService getFirmService() {
+        return firmService;
+    }
+    public MarkUnitService getMarkUnitService() {
+        return markUnitService;
+    }
 }

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Registration</title>
+    <title>Delete a MarkUnit</title>
 
     <meta charset="UTF-8">
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,20 +20,11 @@
 </head>
 <body>
 <div id="login">
-    <form id="1" action="/registration" method="post">
+    <form id="1" action="/duMarksUnits" method="post">
         <fieldset class="clearfix" >
-            <p><span class="fontawesome-user"></span><input type="text" name="name" value="Name" onBlur="if(this.value == '') this.value = 'Name'" onFocus="if(this.value == 'Name') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="username"  value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
-            <p><span class="fontawesome-lock"></span><input type="text" name="password"  value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required></p>
-            <p><select  class="styled-select" name="work" id="work">
-
-                <option value="workman">Рабочий</option>
-
-                <option value="wholesaler">Оптовик</option>
-
-            </select>
-            </p>
-            <p><input type="submit" value="Зарегистрировать"></p>
+            <p><span class="fontawesome-user"></span><input type="text" name="mark" value="Mark" onBlur="if(this.value == '') this.value = 'Mark'" onFocus="if(this.value == 'Mark') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fontawesome-user"></span><input type="text" name="unit"  value="Unit" onBlur="if(this.value == '') this.value = 'Unit'" onFocus="if(this.value == 'Unit') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            <p><input type="submit" value="DELETE"></p>
         </fieldset>
     </form>
 
@@ -42,6 +33,7 @@
 <%if (!Err.message.equals("")){%>
 <div class="div2"><%=Err.message%></div>
 <%Err.message="";}%>
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>

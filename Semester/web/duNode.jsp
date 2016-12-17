@@ -23,12 +23,8 @@
     <form id="1" action="/duNode" method="post">
         <fieldset class="clearfix" >
             <p><span class="fontawesome-user"></span><input type="text" name="node" value="Node" onBlur="if(this.value == '') this.value = 'Node'" onFocus="if(this.value == 'Node') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><select  class="styled-select" name="option" id="work">
-                <option value="delete">DELETE</option>
-                <option value="update">UPDATE</option>
-            </select>
             </p>
-            <p><input type="submit" value="PERFORM"></p>
+            <p><input type="submit" value="DELETE"></p>
         </fieldset>
     </form>
 

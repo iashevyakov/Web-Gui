@@ -6,11 +6,14 @@ import ru.itis.inform.verifiers.DetailVerify;
 import ru.itis.inform.verifiers.FirmVerify;
 import ru.itis.inform.verifiers.NodeVerify;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 
 public class CountryDaoImpl implements CountryDao {
+
+    LinkedList<Country> countries;
 
     public void addCountry(String country, String continent, String president, boolean is_federation) {
         if (JDBConnection.getInstance().getConnection() != null) {
@@ -68,6 +71,31 @@ public class CountryDaoImpl implements CountryDao {
     }
 
     public LinkedList<Country> findAll() {
-        return null;
+        if (JDBConnection.getInstance().getConnection() != null) {
+
+            countries = new LinkedList<Country>();
+
+            String req = "SELECT * FROM countries_view";
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                ResultSet resultSet = JDBConnection.statement.executeQuery();
+
+                while(resultSet.next()){
+
+                    countries.add(new Country(resultSet.getString("country_name"),resultSet.getString("continent"),resultSet.getString("president_name"),resultSet.getBoolean("isfederation")));
+
+                }
+
+                return countries;
+            } catch (SQLException sql) {
+
+                Err.message="SORRY! SERVER ERROR!";
+                return null;
+    }
+
+}
+        else{Err.message="SORRY! SERVER ERROR!";return null;}
     }
 }
