@@ -16,23 +16,35 @@
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/style.css" media="screen" type="text/css" />
     <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+        output.out {
+            color: #ffffff;
+            font-family: "Comic Sans MS";
+            font-size: medium;
+        }
+        div.auth{
+            position: absolute;
+            left: 565px;
+            bottom: 10px;
+        }
+
+    </style>
 </head>
 <body>
 
 <div id="login">
     <form id="1" action="/addFirm" method="post">
         <fieldset class="clearfix" >
-            <p><span class="fontawesome-user"></span><input type="text" name="country" value="Country" onBlur="if(this.value == '') this.value = 'Country'" onFocus="if(this.value == 'Country') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="firm" value="Firm" onBlur="if(this.value == '') this.value = 'Firm'" onFocus="if(this.value == 'Firm') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="owner" value="Owner" onBlur="if(this.value == '') this.value = 'Owner'" onFocus="if(this.value == 'Owner') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="date" value="Foundation:YYYY-MM-DD" onBlur="if(this.value == '') this.value = 'Foundation:YYYY-MM-DD'" onFocus="if(this.value == 'Foundation:YYYY-MM-DD') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="country" value="Country" onBlur="if(this.value == '') this.value = 'Country'" onFocus="if(this.value == 'Country') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="firm" value="Firm" onBlur="if(this.value == '') this.value = 'Firm'" onFocus="if(this.value == 'Firm') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="owner" value="Owner" onBlur="if(this.value == '') this.value = 'Owner'" onFocus="if(this.value == 'Owner') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="date" value="Foundation:YYYY-MM-DD" onBlur="if(this.value == '') this.value = 'Foundation:YYYY-MM-DD'" onFocus="if(this.value == 'Foundation:YYYY-MM-DD') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
             <p><input type="submit" value="Add"></p>
+            <%if (!Err.message.equals("")){%>
+            <p><output class="out"><%=Err.message%></output></p>
+            <%Err.message="";}%>
         </fieldset>
     </form>
-    <%if (!Err.message.equals("")){%>
-    <div class="div2"><%=Err.message%></div>
-    <%Err.message="";}%>
-
 
 </div>
 <p><a href="/home" class="btn btn-danger">Back(<%=request.getAttribute("current_user")%>)</a></p>

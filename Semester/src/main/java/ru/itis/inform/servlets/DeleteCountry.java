@@ -1,6 +1,7 @@
 package ru.itis.inform.servlets;
 
 import ru.itis.inform.dao.CountryDao;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.factories.DaoFactory;
 import ru.itis.inform.factories.ServiceFactory;
 import ru.itis.inform.services.CountryService;
@@ -27,17 +28,40 @@ public class DeleteCountry extends HttpServlet {
 
         String country = req.getParameter("country");
 
-        countryService = ServiceFactory.getInstance().getCountryService();
+        String option = req.getParameter("option");
 
-        countryService.deleteCountry(country);
+        if (option.equals("delete")) {
 
-        req.setAttribute("current_user", session.getAttribute("current_user"));
+            countryService = ServiceFactory.getInstance().getCountryService();
 
-        requestDispatcher = getServletContext().getRequestDispatcher("/duCountry.jsp");
+            countryService.deleteCountry(country);
 
-        requestDispatcher.forward(req, resp);
+            req.setAttribute("current_user", session.getAttribute("current_user"));
 
+            requestDispatcher = getServletContext().getRequestDispatcher("/duCountry.jsp");
+
+            requestDispatcher.forward(req, resp);
+        }
+        else{
+            if (CountryVerify.checkCountry(country)!=null&&CountryVerify.check(country)) {
+                session.setAttribute("country", country);
+                resp.sendRedirect("/updateCountry");
+            }
+            else{
+
+                Err.message = "WE DON'T DEAL WITH THIS COUNTRY!";
+
+                req.setAttribute("current_user", session.getAttribute("current_user"));
+
+                requestDispatcher = getServletContext().getRequestDispatcher("/duCountry.jsp");
+
+                requestDispatcher.forward(req, resp);
+
+                Err.message = "";
+            }
+        }
     }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

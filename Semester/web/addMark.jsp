@@ -16,15 +16,27 @@
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/style.css" media="screen" type="text/css" />
     <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+    <style type="text/css">
+        output.out {
+            color: #ffffff;
+            font-family: "Comic Sans MS";
+            font-size: medium;
+        }
+        div.auth{
+            position: absolute;
+            left: 565px;
+            bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<div id="login">
+<div id="login" class="auth">
     <form id="1" action="/addMark" method="post">
         <fieldset class="clearfix" >
-            <p><span class="fontawesome-user"></span><input type="text" name="mark" value="Mark" onBlur="if(this.value == '') this.value = 'Mark'" onFocus="if(this.value == 'Mark') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="country" value="Country" onBlur="if(this.value == '') this.value = 'Country'" onFocus="if(this.value == 'Country') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-user"></span><input type="text" name="year" value="Year : YYYY" onBlur="if(this.value == '') this.value = 'Year : YYYY'" onFocus="if(this.value == 'Year : YYYY') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="mark" value="Mark" onBlur="if(this.value == '') this.value = 'Mark'" onFocus="if(this.value == 'Mark') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="country" value="Country" onBlur="if(this.value == '') this.value = 'Country'" onFocus="if(this.value == 'Country') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="glyphicon-pencil"></span><input type="text" name="year" value="Year : YYYY" onBlur="if(this.value == '') this.value = 'Year : YYYY'" onFocus="if(this.value == 'Year : YYYY') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
             <p><select  class="styled-select" name="petrol" id="petrol">
 
                 <option value="petrol">Petrol</option>
@@ -42,11 +54,12 @@
             </select>
             </p>
             <p><input type="submit" value="Add"></p>
+
         </fieldset>
+        <%if (!Err.message.equals("")){%>
+        <output class="out text-center"><%=Err.message%></output>
+        <%Err.message="";}%>
     </form>
-    <%if (!Err.message.equals("")){%>
-    <div class="div2"><%=Err.message%></div>
-    <%Err.message="";}%>
 
 
 </div>

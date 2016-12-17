@@ -12,9 +12,9 @@ public class JDBConnection {
 
     private String url = "jdbc:postgresql://localhost:5432/semester";
 
-    private String name = "postgres";
+    private String name = "main_user";
 
-    private String password = "ronaldo777";
+    private String password = "user";
 
     private JDBConnection() {
 

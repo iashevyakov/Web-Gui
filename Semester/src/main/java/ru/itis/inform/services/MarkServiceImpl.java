@@ -24,7 +24,7 @@ public class MarkServiceImpl implements MarkService {
             }
         }
         else{
-            Err.message="PARTS SHOULD BE NON-SPACING CHARS!";
+            Err.message="CHECK YOUR ENTERED DATA!";
         }
     }
 

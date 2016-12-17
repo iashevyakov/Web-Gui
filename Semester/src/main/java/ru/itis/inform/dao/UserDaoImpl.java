@@ -54,12 +54,12 @@ public class UserDaoImpl implements UserDao {
     }
     public User findUserId(String id) {
 
-        if (JDBConnection.getInstance().getConnection()!= null && !id.equals("")) {
+       if (JDBConnection.getInstance().getConnection()!= null && !id.equals("")) {
 
             String req = "SELECT * FROM users WHERE id= ? ";
 
             return find(req,id);
-        }
+     }
 
         return null;
 

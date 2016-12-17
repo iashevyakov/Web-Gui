@@ -18,11 +18,12 @@ public class Home extends HttpServlet {
 
     private HttpSession session;
 
-
+    //класс, отвечающий за домашнию страницу любоого типа пользователя
+    //севлеты принимают данные из форм, вызывают методы классов Service, где содержится вся логика.
+    //Service в свою очередь вызывают методы классов Dao, где происходит работа с БД.
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Err.message="";
 
         resp.setContentType("text/html");
 
@@ -45,11 +46,9 @@ public class Home extends HttpServlet {
 
         User user = (User) session.getAttribute("current_user");
 
-        if (user.getIs_admin()) {
 
-
-        } else {
-
+        //если форму отправляет оптовик, принимать значения полей и вызывать метод у DetailService sendDetail ()
+        //для проверки введенных данных, и дальнейшей работы с БД (в данном случае, добавление опр-го кол-ва деталей на склад, так как пользователь - оптовик.)
             if (!user.getIs_workman()) {
 
                 String detail = req.getParameter("detail");
@@ -69,7 +68,10 @@ public class Home extends HttpServlet {
                 requestDispatcher = getServletContext().getRequestDispatcher("/home.jsp");
 
                 requestDispatcher.forward(req, resp);
-            } else {
+            }
+            //если пользователь - рабочий, то вызываем метод sellDetail(), где произойдет обработка данных и дальнейшая работа с БД,
+            //в данном случае - уменьшение кол-ва детали на складе(рабочий)
+            else {
 
                 String detail = req.getParameter("detail");
 
@@ -92,7 +94,7 @@ public class Home extends HttpServlet {
 
             }
 
-        }
+
 
     }
 

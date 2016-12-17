@@ -2,6 +2,7 @@ package ru.itis.inform.verifiers;
 
 import ru.itis.inform.dao.JDBConnection;
 import ru.itis.inform.errors.Check;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Country;
 
 import java.sql.ResultSet;
@@ -9,9 +10,10 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 
 public class CountryVerify {
+    //класс для проверки данных таблицы countries
 
     private static Matcher m;
-
+    //проверка существования определенной страны в БД.
     public static Country checkCountry(String country) {
 
         if (JDBConnection.getInstance().getConnection()!= null && !country.equals("")) {
@@ -37,11 +39,13 @@ public class CountryVerify {
             }
         } catch (SQLException sql) {
 
-            sql.printStackTrace();
+            Err.message="SORRY! SERVER ERROR!";
 
         }
         return null;
     }
+    //методы check во всех классах типа Verify проверяют введденые значения из полей на правильность
+    //правила введения данных лежат в классе Check пакета Error.
     public static boolean  check(String country, String continent, String president){
         if (country.equals("Country")||continent.equals("Continent")||president.equals("President")){
             return false;

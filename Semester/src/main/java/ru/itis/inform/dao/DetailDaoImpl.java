@@ -1,7 +1,4 @@
 package ru.itis.inform.dao;
-
-
-
 import ru.itis.inform.errors.Check;
 import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Country;
@@ -20,9 +17,9 @@ public class DetailDaoImpl implements DetailDao {
     private Matcher m ;
 
     private LinkedList<DetailsView> catalog;
-
+    //отправление определенного количества деталей оптовиком на склад
     public void sendDetail(String detail, String number) {
-
+            //плюсуем детали на складе
             if (JDBConnection.getInstance().getConnection() != null) {
 
                 int num = Integer.parseInt(number);
@@ -52,6 +49,8 @@ public class DetailDaoImpl implements DetailDao {
 
 
     }
+    //непосредственно добавление детали в БД.
+
     public void addDetail(String detail,String firm, String node) {
         if (JDBConnection.getInstance().getConnection() != null) {
 
@@ -82,10 +81,9 @@ public class DetailDaoImpl implements DetailDao {
         }
         else{Err.message="SORRY! SERVER ERROR!";}
     }
+    //продажа детали рабочим
     public void sellDetail(String detail, String number)  {
-
-
-
+            //минусуем детали на складе
         if (JDBConnection.getInstance().getConnection() != null) {
 
             int num = Integer.parseInt(number);
@@ -105,7 +103,7 @@ public class DetailDaoImpl implements DetailDao {
                 Err.message="THE DETAIL IS SOLD!";
 
             } catch (SQLException sql) {
-
+                //при недостатке такой детали на складе
                 Err.message="WE HAVEN'T SO MANY PIECE OF THE DETAIL! TRY TO SELL LESS!";
 
             }
@@ -116,7 +114,7 @@ public class DetailDaoImpl implements DetailDao {
 
 
 }
-
+//удаление детали из БД. detail_name - PK, поэтому для удаления детали достаточно указать в форме лишь его.
     public void deleteDetail(String detail) {
 
         if (JDBConnection.getInstance().getConnection() != null) {
@@ -141,7 +139,7 @@ public class DetailDaoImpl implements DetailDao {
         }
         else{Err.message="SORRY! SERVER ERROR!";}
     }
-
+    //чтение таблицы details(from CRUD), использование details_view.
     public LinkedList<DetailsView> findAll() {
 
         if (JDBConnection.getInstance().getConnection() != null) {

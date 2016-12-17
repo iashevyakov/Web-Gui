@@ -2,6 +2,7 @@ package ru.itis.inform.verifiers;
 
 import ru.itis.inform.dao.JDBConnection;
 import ru.itis.inform.errors.Check;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Country;
 import ru.itis.inform.models.Mark;
 
@@ -41,7 +42,7 @@ public class MarkVerify {
             }
         } catch (SQLException sql) {
 
-            sql.printStackTrace();
+            Err.message = "SORRY! SERVER ERROR!";
 
         }
         return null;

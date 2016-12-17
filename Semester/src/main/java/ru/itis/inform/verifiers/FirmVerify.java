@@ -2,6 +2,7 @@ package ru.itis.inform.verifiers;
 
 import ru.itis.inform.dao.JDBConnection;
 import ru.itis.inform.errors.Check;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Firm;
 
 import java.sql.ResultSet;
@@ -36,7 +37,7 @@ public class FirmVerify {
                 }
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message = "SORRY! SERVER ERROR!";
 
             }
             return null;
@@ -66,7 +67,7 @@ public class FirmVerify {
                 }
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message = "SORRY! SERVER ERROR!";
 
             }
             return null;

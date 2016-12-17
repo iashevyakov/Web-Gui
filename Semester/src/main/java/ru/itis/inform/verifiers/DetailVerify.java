@@ -2,6 +2,7 @@ package ru.itis.inform.verifiers;
 
 import ru.itis.inform.dao.JDBConnection;
 import ru.itis.inform.errors.Check;
+import ru.itis.inform.errors.Err;
 import ru.itis.inform.models.Country;
 import ru.itis.inform.models.Detail;
 
@@ -36,7 +37,7 @@ public class DetailVerify {
                 }
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message = "SORRY! SERVER ERROR!";
 
             }
             return null;
@@ -67,7 +68,7 @@ public class DetailVerify {
                 }
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message = "SORRY! SERVER ERROR!";
 
             }
             return null;
@@ -96,7 +97,7 @@ public class DetailVerify {
                 }
             } catch (SQLException sql) {
 
-                sql.printStackTrace();
+                Err.message = "SORRY! SERVER ERROR!";
 
             }
             return null;
@@ -106,6 +107,8 @@ public class DetailVerify {
 
         return null;
     }
+
+    // check - проверка на правильность введения данных из полей формы(правила - в классе Check пакета Error)
     public static boolean check(String detail, String number, String mark, String unit, String node) {
         boolean d = false, nu = false, ma = false, u = false, n = false;
         if (detail.equals("Detail") || number.equals("Quantity") || mark.equals("Mark") || unit.equals("Unit") || node.equals("Node")) {

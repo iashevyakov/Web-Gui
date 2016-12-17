@@ -98,4 +98,36 @@ public class CountryDaoImpl implements CountryDao {
 }
         else{Err.message="SORRY! SERVER ERROR!";return null;}
     }
+    public void updateCountry(String country, String newcountry, String continent, String president, boolean isfederation){
+        if (JDBConnection.getInstance().getConnection() != null) {
+
+            String req = "UPDATE countries SET country_name = ? , continent = ?, president_name = ?,isfederation = ? WHERE country_name = ?";
+
+
+            try {
+                JDBConnection.statement = JDBConnection.getInstance().getConnection().prepareStatement(req);
+
+                JDBConnection.statement.setString(1, newcountry);
+
+                JDBConnection.statement.setString(2, continent);
+
+                JDBConnection.statement.setString(3, president);
+
+                JDBConnection.statement.setBoolean(4,isfederation);
+
+                JDBConnection.statement.setString(5,country);
+
+                JDBConnection.statement.executeUpdate();
+
+                Err.message="THE COUNTRY IS UPDATED!";
+
+            } catch (SQLException sql) {
+
+                Err.message="CHECK YOUR ENTERED DATA!";
+
+            }
+
+        }
+        else{Err.message="SORRY! SERVER ERROR!";}
+    }
 }

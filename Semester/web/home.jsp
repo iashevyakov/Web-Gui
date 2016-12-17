@@ -22,6 +22,12 @@
             width: 130px;
 
         }
+        a.btn-info{
+            position: absolute;
+            left: 50px;
+            top: 100px;
+            width: 118px;
+        }
         table.table-bordered{
             position: absolute;
             left:475px;
@@ -29,7 +35,7 @@
         div.auth{
             position: absolute;
             left: 575px;
-            bottom: 25px;
+            bottom: 10px;
         }
         div.divhome {
             position: absolute;
@@ -38,6 +44,14 @@
             left: 580px;
             color: #ffffff;
             font-size: medium;
+        }
+        output.out{
+            color: #ffffff;
+            font-family: "Comic Sans MS";
+            font-size:medium;
+        }
+        input[type="submit"]{
+            background-color: #ea4c88;
         }
     </style>
 
@@ -50,7 +64,7 @@
 
 <table class="table table-bordered">
 
-    <tr><td><p><a href="/duCountry" class="btn btn-warning">Delete a Country</a></p></td><td><p><a href="/addCountry" class="btn btn-success">Add a Country</a></p></td><td><p><a href="/countries" class="btn btn-primary">Show Countries</a></p></td></tr>
+    <tr><td><p><a href="/duCountry" class="btn btn-warning">D/U a Country</a></p></td><td><p><a href="/addCountry" class="btn btn-success">Add a Country</a></p></td><td><p><a href="/countries" class="btn btn-primary">Show Countries</a></p></td></tr>
     <tr><td><p><a href="/duFirm" class="btn btn-warning">Delete a Firm</a></p></td><td><p><a href="/addFirm" class="btn btn-success">Add a Firm</a></p></td><td><p><a href="/firms" class="btn btn-primary">Show Firms</a></p></td></tr>
     <tr><td><p><a href="/duMark" class="btn btn-warning">Delete a Mark</a></p></td><td><p><a href="/addMark" class="btn btn-success">Add a Mark</a></p></td><td><p><a href="/marks" class="btn btn-primary">Show Marks</a></p></td></tr>
     <tr><td><p><a href="/duUnit" class="btn btn-warning">Delete an Unit</a></p></td><td><p><a href="/addUnit" class="btn btn-success">Add an Unit</a></p></td><td><p><a href="/units" class="btn btn-primary">Show Units</a></p></td></tr>
@@ -79,15 +93,13 @@
             <p><span class="glyphicon-pencil"></span><input type="text" name="detail"  value="Detail" onBlur="if(this.value == '') this.value = 'Detail'" onFocus="if(this.value == 'Detail') this.value = ''" required></p>
             <p><span class="glyphicon-pencil"></span><input type="text" name="number"  value="Quantity" onBlur="if(this.value == '') this.value = 'Quantity'" onFocus="if(this.value == 'Quantity') this.value = ''" required></p>
             <p><input type="submit" value="SELL"></p>
+            <%if (!Err.message.equals("")){%>
+            <p><output class="out"><%=Err.message%></output></p>
+            <%Err.message="";}%>
         </fieldset>
     </form>
 </div>
-<%if (!Err.message.equals("")){%>
-<div class="divhome"><%=Err.message%></div>
-<%Err.message="";}%>
-
-
-
+<a href="/details" class="btn btn-info">Catalog</a>
 <center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
 <%}else {%>
 <div id="login" class="auth">
@@ -100,10 +112,13 @@
             <p><span class="glyphicon-pencil"></span><input type="text" name="detail"  value="Detail" onBlur="if(this.value == '') this.value = 'Detail'" onFocus="if(this.value == 'Detail') this.value = ''" required></p>
             <p><span class="glyphicon-pencil"></span><input type="text" name="number"  value="Quantity" onBlur="if(this.value == '') this.value = 'Quantity'" onFocus="if(this.value == 'Quantity') this.value = ''" required></p>
             <p><input type="submit" value="SEND"></p>
+            <%if (!Err.message.equals("")){%>
+            <p><output class="out"><%=Err.message%></output></p>
+            <%Err.message="";}%>
         </fieldset>
     </form>
 </div>
-
+<a href="/details" class="btn btn-info">Catalog</a>
 <center><p><a href="/logout" class="btn btn-danger">LogOut(<%=request.getAttribute("current_user")%>)</a></p></center>
 <%if (!Err.message.equals("")){%>
 <div class="divhome"> <%=Err.message%></div>

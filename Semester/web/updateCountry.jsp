@@ -2,13 +2,14 @@
   Created by IntelliJ IDEA.
   User: Иван
   Date: 04.12.2016
-  Time: 14:55
+  Time: 16:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add a Detail</title>
+    <title>Update a Country</title>
+
     <meta charset="UTF-8">
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -30,23 +31,26 @@
     </style>
 </head>
 <body>
-
 <div id="login">
-    <form id="1" action="/addDetail" method="post">
+    <form id="1" action="/updateCountry" method="post">
         <fieldset class="clearfix" >
-            <p><span class="glyphicon-pencil"></span><input type="text" name="firm" value="Firm" onBlur="if(this.value == '') this.value = 'Firm'" onFocus="if(this.value == 'Firm') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="glyphicon-pencil"></span><input type="text" name="node" value="Node" onBlur="if(this.value == '') this.value = 'Node'" onFocus="if(this.value == 'Node') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="glyphicon-pencil"></span><input type="text" name="detail" value="Detail" onBlur="if(this.value == '') this.value = 'Detail'" onFocus="if(this.value == 'Detail') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><input type="submit" value="Add"></p>
+            <p><span class="fontawesome-user"></span><input type="text" name="newcountry" value="Country" onBlur="if(this.value == '') this.value = 'Country'" onFocus="if(this.value == 'Country') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fontawesome-user"></span><input type="text" name="continent"  value="Continent" onBlur="if(this.value == '') this.value = 'Continent'" onFocus="if(this.value == 'Continent') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            <p><span class="fontawesome-user"></span><input type="text" name="president"  value="President" onBlur="if(this.value == '') this.value = 'President'" onFocus="if(this.value == 'President') this.value = ''" required></p>
+            <p><select  class="styled-select" name="isfederation" id="feder">
+                <option value="federation">FEDERATION</option>
+                <option value="confederation">CONFEDERATION</option>
+            </select>
+            </p>
+            <p><input type="submit" value="UPDATE"></p>
             <%if (!Err.message.equals("")){%>
             <p><output class="out"><%=Err.message%></output></p>
             <%Err.message="";}%>
         </fieldset>
     </form>
 
+    <p><a href="/home" class="btn btn-danger">Back(<%=request.getAttribute("current_user")%>)</a></p>
 </div>
-<p><a href="/home" class="btn btn-danger">Back(<%=request.getAttribute("current_user")%>)</a></p>
-
 
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>

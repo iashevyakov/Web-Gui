@@ -237,6 +237,14 @@
         <servlet-name>ShowMarksUnits</servlet-name>
         <url-pattern>/marksunits</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateCountry</servlet-name>
+        <servlet-class>ru.itis.inform.servlets.UpdateCountry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCountry</servlet-name>
+        <url-pattern>/updateCountry</url-pattern>
+    </servlet-mapping>
 
 
 

@@ -27,7 +27,7 @@ public class CountryServiceImpl implements CountryService {
             }
         }
         else{
-            Err.message="NAME OF COUNTRY SHOULD BE LIKE NONSPACING CHARS!";
+            Err.message="CHECK YOUR ENTERED DATA!";
         }
 
     }
@@ -41,6 +41,21 @@ public class CountryServiceImpl implements CountryService {
             }
             else{
                 Err.message="WE ALREADY DEAL WITH COUNTRY CALLED BY THIS NAME!";
+            }
+
+        } else {
+            Err.message = "CHECK YOUR ENTERED DATA!";
+        }
+    }
+    public void updateCountry(String country, String newcountry, String continent, String president, boolean is_federation){
+        boolean checkResult = false;
+        checkResult = CountryVerify.check(newcountry, continent, president)&CountryVerify.check(country);
+        if (checkResult) {
+            if (CountryVerify.checkCountry(country)!=null){
+                countryDao.updateCountry(country, newcountry, continent, president, is_federation);
+            }
+            else{
+                Err.message="WE DON'T DEAL WITH THIS COUNTRY!";
             }
 
         } else {
