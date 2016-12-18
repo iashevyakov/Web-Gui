@@ -2,6 +2,9 @@ package ru.itis.inform.models;
 
 
 public class User {
+
+    //таблица users
+
     private int id;
     private String name;
     private String login;

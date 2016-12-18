@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Unit {
-
+    //таблица units
     private String unitName;
 
     private String inventorName;

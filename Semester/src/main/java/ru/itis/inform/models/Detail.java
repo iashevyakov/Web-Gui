@@ -3,6 +3,7 @@ package ru.itis.inform.models;
 
 public class Detail {
 
+    //таблица details
     private String detailName;
 
     private String firmName;

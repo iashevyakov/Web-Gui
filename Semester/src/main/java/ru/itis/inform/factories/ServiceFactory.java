@@ -1,12 +1,12 @@
 package ru.itis.inform.factories;
 
 import ru.itis.inform.errors.Err;
-import ru.itis.inform.services.*;
+import ru.itis.inform.services.interfaces.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
+//иньъекция зависимостей, то есть средство для легкой подмены реализации интерфейса.
 public class ServiceFactory {
 
     private static ServiceFactory instance;

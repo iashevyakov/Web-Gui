@@ -2,7 +2,7 @@ package ru.itis.inform.models;
 
 
 public class DetailsView {
-
+    //представление details_view
     private String markName;
 
     private String nodeName;

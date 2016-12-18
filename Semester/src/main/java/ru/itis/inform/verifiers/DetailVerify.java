@@ -13,10 +13,10 @@ import java.util.regex.Matcher;
 public class DetailVerify {
 
     private static Matcher m;
-
+    //проверка существования детали в БД по трем параметрам.
     public static Detail checkDetailAdmin(String firm, String detail, String node)
     {
-        if (JDBConnection.getInstance().getConnection()!= null && !firm.equals("")) {
+        if (JDBConnection.getInstance().getConnection()!= null) {
 
             String req = "SELECT * FROM details WHERE detail_name = ? AND firm_name = ? AND node_name = ? ";
 
@@ -47,6 +47,7 @@ public class DetailVerify {
 
         return null;
     }
+    //проверка существования детали в БД по двум параметрам.
     public static Detail checkDetail( String detail, String node)
     {
         if (JDBConnection.getInstance().getConnection()!= null) {
@@ -78,6 +79,7 @@ public class DetailVerify {
 
         return null;
     }
+    //проверка сущетствования детали БД по её имени.
     public static Detail checkDetail(String detail){
         if (JDBConnection.getInstance().getConnection()!= null) {
 

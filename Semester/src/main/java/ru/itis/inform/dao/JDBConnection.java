@@ -1,19 +1,21 @@
 package ru.itis.inform.dao;
 
+import ru.itis.inform.errors.Err;
+
 import java.sql.*;
 
 public class JDBConnection {
-
+    //подключение к БД.
     private static JDBConnection instance = new JDBConnection();
-
+    //объект для подключения к БД
     private Connection connection;
-
+    //объект для выполнения запросов к БД.
     public static PreparedStatement statement;
 
-    private String url = "jdbc:postgresql://localhost:5432/semester";
-
-    private String name = "main_user";
-
+    private String url = "jdbc:postgresql://localhost:5432/semesterwork";
+    //пользователь БД.
+    private String name = "main_user1";
+    //пароль пользователя БД.
     private String password = "user";
 
     private JDBConnection() {
@@ -23,16 +25,16 @@ public class JDBConnection {
         try {
 
             Class.forName("org.postgresql.Driver");
-
+            //установка соединения с БД.
             this.connection = DriverManager.getConnection(url, name, password);
 
         } catch (ClassNotFoundException e) {
 
-            e.printStackTrace();
+            Err.message = "SORRY! SERVER ERROR!";
 
         } catch (SQLException sql) {
 
-            sql.printStackTrace();
+            Err.message = "SORRY! SERVER ERROR!";
 
         }
     }

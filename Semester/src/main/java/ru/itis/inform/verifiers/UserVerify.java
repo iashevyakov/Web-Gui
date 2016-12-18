@@ -1,11 +1,8 @@
 package ru.itis.inform.verifiers;
 
-import ru.itis.inform.dao.DetailDao;
-import ru.itis.inform.dao.DetailDaoImpl;
-import ru.itis.inform.dao.UserDao;
+import ru.itis.inform.dao.interfaces.UserDao;
 import ru.itis.inform.errors.Check;
 import ru.itis.inform.models.User;
-import ru.itis.inform.models.Country;
 
 import java.util.regex.Matcher;
 

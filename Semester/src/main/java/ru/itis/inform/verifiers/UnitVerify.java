@@ -14,11 +14,11 @@ import java.util.regex.Matcher;
  * Created by Иван on 05.11.2016.
  */
 public class UnitVerify {
-
+    //класс для проверок данных таблицы units.
     private static Matcher m;
 
     public static Unit checkUnit(String unit) {
-        if (JDBConnection.getInstance().getConnection() != null && !unit.equals("")) {
+        if (JDBConnection.getInstance().getConnection() != null ) {
 
             String req = "SELECT * FROM units WHERE unit_name = ? ";
 

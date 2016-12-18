@@ -1,9 +1,9 @@
 package ru.itis.inform.filters;
 import ru.itis.inform.models.User;
-import ru.itis.inform.services.TokenService;
-import ru.itis.inform.services.TokenServiceImpl;
-import ru.itis.inform.services.UserService;
-import ru.itis.inform.services.UserServiceImpl;
+import ru.itis.inform.services.interfaces.TokenService;
+import ru.itis.inform.services.implementations.TokenServiceImpl;
+import ru.itis.inform.services.interfaces.UserService;
+import ru.itis.inform.services.implementations.UserServiceImpl;
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +15,10 @@ public class LoginFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
-
+    //этот фильтр проверяет, был ли пользователь когда-либо авторизован в данном браузере,
+    //если да, то со страницы авторизацию его перебрости сразу же на домашнюю страницу.
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
+    //проверяем, есть ли cookie в браузере для данного пользователя, если есть, то сразу же перенаправялем его н домашнюю страницу /home.
         Cookie[] cookies = ((HttpServletRequest) servletRequest).getCookies();
 
         if (cookies != null) {
@@ -33,7 +34,7 @@ public class LoginFilter implements Filter {
                     UserService userService = new UserServiceImpl();
 
                     User user = userService.findId(id);
-
+                    //куки нашлись, перенаправляем на /home.
                     if (user != null) {
 
 
@@ -48,6 +49,8 @@ public class LoginFilter implements Filter {
                 }
             }
         }
+        //куки не нашлись, ищем в сессии.
+        //Если сессия нашлась, перенаправляем, если нет - оставляет его на /login.
         if (((HttpServletRequest) servletRequest).getSession().getAttribute("current_user") != null) {
 
 

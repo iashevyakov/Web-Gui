@@ -4,7 +4,7 @@ package ru.itis.inform.models;
 import java.sql.Date;
 
 public class Firm {
-
+    //таблица firms
     private String firmName;
     private String countryName;
 

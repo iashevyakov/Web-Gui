@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Node {
-
+    //таблица nodes
     private String nodeName;
 
     public String getNodeName() {

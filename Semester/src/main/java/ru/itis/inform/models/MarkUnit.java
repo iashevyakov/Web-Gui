@@ -1,7 +1,7 @@
 package ru.itis.inform.models;
 
 public class MarkUnit {
-
+    //таблица marksunits
     private String mark;
 
     private String unit;

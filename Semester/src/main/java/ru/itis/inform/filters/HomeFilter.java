@@ -7,24 +7,23 @@ import java.io.IOException;
 
 
 import ru.itis.inform.models.User;
-import ru.itis.inform.services.TokenService;
-import ru.itis.inform.services.TokenServiceImpl;
-import ru.itis.inform.services.UserService;
-import ru.itis.inform.services.UserServiceImpl;
+import ru.itis.inform.services.interfaces.TokenService;
+import ru.itis.inform.services.implementations.TokenServiceImpl;
+import ru.itis.inform.services.interfaces.UserService;
+import ru.itis.inform.services.implementations.UserServiceImpl;
 
-import javax.servlet.*;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class HomeFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
+    //фильтр для доступа к домашней странице, дает доступ к ссылке /home , если пользователь ранее авторизвался, или для него есть cookie или сессия.
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
+        //проверяем, есть ли пользователь в cookie браузера.
+        //если да, даем ему доступ к /home, если нет, направляем на /login.
         Cookie[] cookies = ((HttpServletRequest) servletRequest).getCookies();
 
         if (cookies != null) {
@@ -42,8 +41,7 @@ public class HomeFilter implements Filter {
                     User user = userService.findId(id);
 
                     if (user == null) {
-
-
+                        //cookie для этого юзера нет, направляем его на /login.
                         ((HttpServletResponse) servletResponse).sendRedirect("/login");
 
                         return;
@@ -57,7 +55,7 @@ public class HomeFilter implements Filter {
             }
         }
 
-
+            //ищем сессию для пользователя, есть нет её, то направляем на /login, если есть, даем доступ на /home.
             if(((HttpServletRequest) servletRequest).getSession().getAttribute("current_user")==null){
                 ((HttpServletResponse) servletResponse).sendRedirect("/login");
             }

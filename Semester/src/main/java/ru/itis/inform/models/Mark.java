@@ -4,7 +4,7 @@ package ru.itis.inform.models;
 import java.util.ArrayList;
 
 public class Mark {
-
+    //таблица marks
     private String markName;
 
     private String country;

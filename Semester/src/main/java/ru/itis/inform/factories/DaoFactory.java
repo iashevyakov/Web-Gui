@@ -1,15 +1,12 @@
 package ru.itis.inform.factories;
 
-import ru.itis.inform.dao.*;
-import ru.itis.inform.services.DetailService;
-import ru.itis.inform.services.TokenService;
-import ru.itis.inform.services.UserService;
+import ru.itis.inform.dao.interfaces.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-
+//инъекция зависимостей для DAO, для легкой подмены реализации интерфейса(СУБД).
 public class DaoFactory {
 
     private static DaoFactory instance;

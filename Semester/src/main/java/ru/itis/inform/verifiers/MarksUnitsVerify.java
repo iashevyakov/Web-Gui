@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MarksUnitsVerify {
-
+    //проверка на существование соответствия между маркой и агрегатом в таблице marksunits
     public static Unit CheckMarksUnits (String mark, String unit)
 
     {
@@ -30,11 +30,12 @@ public class MarksUnitsVerify {
                 ResultSet resultSet = JDBConnection.statement.executeQuery();
 
                 while (resultSet.next()) {
-
+                    //возвращаем строку из БД с помощью моделей пакета models - в данном случае взял Unit,
+                    //хотя можно и MarkUnit, и Mark
                     return new Unit(resultSet.getString("unit_name"));
                 }
             } catch (SQLException sql) {
-
+                //создаем ошибку при исключительной ситуации.
                 Err.message = "SORRY! SERVER ERROR!";
 
             }

@@ -15,7 +15,7 @@ import java.util.regex.Matcher;
 public class FirmVerify {
 
     private static Matcher m;
-
+    //проверка на существания фирмы в БД по двум параметрам.
     public static Firm checkFirm(String firm, String country){
 
         if (JDBConnection.getInstance().getConnection()!= null && !firm.equals("")) {
@@ -32,7 +32,7 @@ public class FirmVerify {
                 ResultSet resultSet = JDBConnection.statement.executeQuery();
 
                 while (resultSet.next()) {
-
+                    //возвращаем строку с помощью модели Firm пакета models
                     return new Firm(resultSet.getString("firm_name"),resultSet.getString("country_name"));
                 }
             } catch (SQLException sql) {
@@ -48,6 +48,7 @@ public class FirmVerify {
         return null;
 
     }
+    //проверка на существование фирмы в БД по её имени.
     public static Firm checkFirm(String firm){
 
         if (JDBConnection.getInstance().getConnection()!= null) {
@@ -62,7 +63,7 @@ public class FirmVerify {
                 ResultSet resultSet = JDBConnection.statement.executeQuery();
 
                 while (resultSet.next()) {
-
+                //возвращаем строку с помощью модели Firm пакета models
                     return new Firm(resultSet.getString("firm_name"),resultSet.getString("country_name"));
                 }
             } catch (SQLException sql) {
@@ -78,6 +79,7 @@ public class FirmVerify {
         return null;
 
     }
+    //методы check - проверка на правильность введения данных из форм.
     public static boolean check(String firm, String country, String owner, String date) {
         boolean f = false, c = false, o = false, d = false;
         if (firm.equals("Firm") || country.equals("Country") || owner.equals("Owner") || date.equals("Foundation:YYYY-MM-DD")) {
@@ -103,6 +105,7 @@ public class FirmVerify {
         else{return false;}
 
     }
+
     public static boolean check(String Firm){
         if (Firm.equals("Firm"))
         {return false;}

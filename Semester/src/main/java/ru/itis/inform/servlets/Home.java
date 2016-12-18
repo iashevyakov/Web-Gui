@@ -1,10 +1,9 @@
 package ru.itis.inform.servlets;
 
-import ru.itis.inform.errors.Err;
 import ru.itis.inform.factories.ServiceFactory;
 import ru.itis.inform.models.User;
-import ru.itis.inform.services.DetailService;
-import ru.itis.inform.services.UserService;
+import ru.itis.inform.services.interfaces.DetailService;
+import ru.itis.inform.services.interfaces.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

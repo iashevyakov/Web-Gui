@@ -2,7 +2,7 @@ package ru.itis.inform.models;
 
 
 public class Country {
-
+    //таблица countries
     public String getCountryName() {
         return countryName;
     }

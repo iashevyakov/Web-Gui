@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
  * Created by Иван on 05.11.2016.
  */
 public class MarkVerify {
-
+    //все тоже самое, что и для остальных классов типа Verify.
     public static Matcher m;
 
     public static Mark checkMark(String mark) {
