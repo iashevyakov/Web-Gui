@@ -1,3 +1,5 @@
+package ru.itis.inform;
+import ru.itis.inform.ClientConnection;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,7 +18,7 @@ public class Server {
 
     private static final int PORT = 8080;
 
-    private List<ClientConnection> list;
+    private static List<ClientConnection> list;
 
     private int numberOfClients;
 
@@ -44,6 +46,9 @@ public class Server {
         } catch (Exception ex) {
             System.err.println("Error: " + ex.getMessage());
         }
+    }
+    public static List<ClientConnection> getList(){
+        return list;
     }
 
     public static void main(String[] args) {

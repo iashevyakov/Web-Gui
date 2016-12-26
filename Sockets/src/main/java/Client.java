@@ -1,26 +1,64 @@
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
 
+    private Scanner sc;
+
+    private String n1;
+
+    private String n2;
+
+    private String op;
+
+    private final int PORT = 8080;
+
+    private String host;
+
+    private Socket s;
+
+    private OutputStream out;
+
+    private PrintWriter pw;
+
     public Client() throws IOException {
 
-        int port = 8080;
-        String host = "localhost";
-        Socket s = new Socket(host, port);
-        OutputStream out = s.getOutputStream();
-        PrintWriter pw = new PrintWriter(out);
-        pw.println("GET / Ivan/1");
-        pw.println("HOST: localhost");
-        pw.println("5");
-        pw.println("8");
+        sc = new Scanner(System.in);
+
+        n1 = sc.nextLine();
+
+        op = sc.nextLine();
+
+        n2 = sc.nextLine();
+
+        host = "localhost";
+
+        s = new Socket(host, PORT);
+
+        out = s.getOutputStream();
+
+        pw = new PrintWriter(out);
+
+
+    }
+    public void run(){
+
+        pw.println("GET / Ivan/1.0");
+
+        pw.println(" HOST: localhost &");
+
+        pw.println(n1);
+
+        pw.println(op);
+
+        pw.println(n2);
+
         pw.flush();
 
     }
-    public static void main(String [] args) throws IOException {
+
+    public static void main(String[] args) throws IOException {
         new Client();
     }
 }
