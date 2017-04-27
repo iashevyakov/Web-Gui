@@ -18,7 +18,7 @@ public class UnitVerify {
     private static Matcher m;
 
     public static Unit checkUnit(String unit) {
-        if (JDBConnection.getInstance().getConnection() != null ) {
+        if (JDBConnection.getInstance().getConnection() != null) {
 
             String req = "SELECT * FROM units WHERE unit_name = ? ";
 
@@ -42,7 +42,8 @@ public class UnitVerify {
             }
         } catch (SQLException sql) {
 
-            Err.message = "SORRY! SERVER ERROR!";;
+            Err.message = "SORRY! SERVER ERROR!";
+            ;
 
         }
         return null;
@@ -55,32 +56,41 @@ public class UnitVerify {
 
         boolean u = false, in = false, ic = false, d = false;
         m = Check.parts.matcher(unit);
-        if (m.matches()){u=true;}
-        m=Check.parts.matcher(inventor_name);
-        if (m.matches()){in=true;}
-        m=Check.parts.matcher(inventor_country);
-        if (m.matches()){ic=true;}
-        m=Check.dateCheck.matcher(date);
-        if(m.matches()){d=true;}
-        if(u&in&ic&d){
-            return true;
+        if (m.matches()) {
+            u = true;
         }
-        else{
+        m = Check.parts.matcher(inventor_name);
+        if (m.matches()) {
+            in = true;
+        }
+        m = Check.parts.matcher(inventor_country);
+        if (m.matches()) {
+            ic = true;
+        }
+        m = Check.dateCheck.matcher(date);
+        if (m.matches()) {
+            d = true;
+        }
+        if (u & in & ic & d) {
+            return true;
+        } else {
             return false;
         }
 
 
     }
-    public static boolean check(String unit){
-        if (unit.equals("Unit")){
+
+    public static boolean check(String unit) {
+        if (unit.equals("Unit")) {
             return false;
         }
-        m=Check.parts.matcher(unit);
+        m = Check.parts.matcher(unit);
 
-        if (m.matches()){
+        if (m.matches()) {
             return true;
+        } else {
+            return false;
         }
-        else{return false;}
     }
 
 }
